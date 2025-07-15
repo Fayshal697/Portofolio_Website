@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fayshal Karan - Tech Enthusiast Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary: #00d4ff;
+        --secondary: #8b5cf6;
+        --accent: #ff3366;
+        --dark: #0a0a0f;
+        --dark-secondary: #151520;
+        --light: #ffffff;
+        --text-muted: #94a3b8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        background-color: var(--dark);
+        color: var(--light);
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* Custom Cursor */
+      .cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: all 0.1s ease;
+        transform: translate(-50%, -50%);
+      }
+
+      .cursor-follower {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.3s ease;
+        transform: translate(-50%, -50%);
+      }
+
+      /* Animated Background */
+      .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .bg-particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      /* Enhanced Navigation */
+      .nav-link {
+        position: relative;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+        border-radius: 0.5rem;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border-radius: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .nav-link:hover::before {
+        opacity: 0.2;
+      }
+
+      .nav-link:hover {
+        transform: translateY(-2px);
+        color: var(--primary);
+      }
+
+      /* Typing Animation */
+      .typing-text::after {
+        content: "|";
+        animation: blink 1s infinite;
+        color: var(--accent);
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Glowing Effects */
+      .glow {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .glow:hover {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+      }
+
+      /* Card Hover Effects */
+      .card-hover {
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: var(--primary);
+      }
+
+      /* Scroll Animations */
+      .scroll-fade {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+      }
+
+      .scroll-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 3D Tilt Effect */
+      .tilt-card {
+        transform-style: preserve-3d;
+        transition: transform 0.1s ease;
+      }
+
+      /* Gradient Text */
+      .gradient-text {
+        background: linear-gradient(
+          45deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-shift 3s ease-in-out infinite;
+      }
+
+      @keyframes gradient-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* Particle System */
+      .particle-system {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      /* Button Animations */
+      .btn-primary {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      /* Skills Progress Animation */
+      .skill-progress {
+        position: relative;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .skill-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+        transition: width 2s ease;
+        position: relative;
+      }
+
+      .skill-progress-bar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        animation: shimmer 2s infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .cursor,
+        .cursor-follower {
+          display: none;
+        }
+
+        body {
+          cursor: default;
+        }
+      }
+
+      /* Hero Section Enhancements */
+      .hero-section {
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(139, 92, 246, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 212, 255, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(255, 51, 102, 0.2) 0%,
+            transparent 50%
+          );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 0
+        );
+        background-size: 50px 50px;
+        animation: pattern-move 20s linear infinite;
+      }
+
+      @keyframes pattern-move {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 50px 50px;
+        }
+      }
+
+      /* Loading Screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-animation {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(0, 212, 255, 0.3);
+        border-top: 3px solid var(--primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Section Dividers */
+      .section-divider {
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          transparent
+        );
+        margin: 4rem 0;
+        opacity: 0.5;
+      }
+
+      /* Enhanced Project Cards */
+      .project-preview {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .project-preview::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+      }
+
+      .project-preview:hover::before {
+        opacity: 0.1;
+      }
+
+      /* Interactive Elements */
+      .interactive-element {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .interactive-element:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      /* Smooth Scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, var(--secondary), var(--accent));
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-animation"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg" id="animatedBg"></div>
+
+    <!-- Enhanced Navigation -->
+    <nav
+      class="fixed w-full bg-black/80 backdrop-blur-md z-50 px-6 py-4 border-b border-white/10"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="text-2xl font-bold">
+          <span class="gradient-text">Fayshal</span>
+          <span class="text-white">Karan</span>
+        </div>
+        <div class="hidden md:flex space-x-2">
+          <a href="#home" class="nav-link text-white">Home</a>
+          <a href="#about" class="nav-link text-white">About</a>
+          <a href="#passion" class="nav-link text-white">Passion</a>
+          <a href="#projects" class="nav-link text-white">Projects</a>
+          <a href="#contact" class="nav-link text-white">Contact</a>
+        </div>
+        <button class="md:hidden text-white relative z-50" id="mobileMenuBtn">
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section
+      id="home"
+      class="hero-section min-h-screen flex items-center pt-20 pb-16 px-6 relative"
+    >
+      <div class="hero-pattern"></div>
+      <div class="particle-system" id="heroParticles"></div>
+
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+      >
+        <div class="text-center md:text-left scroll-fade">
+          <div class="mb-6">
+            <p class="text-var(--text-muted) mb-2">Hello, I'm</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+              <span class="gradient-text typing-text" id="typingText"
+                >Fayshal Karan</span
+              >
+            </h1>
+            <p class="text-2xl md:text-3xl text-var(--text-muted) mb-4">
+              Tech Enthusiast & Developer
+            </p>
+          </div>
+
+          <p class="text-xl text-gray-300 mb-8 max-w-lg">
+            Game Developer • UI/UX Designer • Data Analyst
+            <br />
+            <span class="gradient-text"
+              >Creating digital experiences that inspire and innovate</span
+            >
+          </p>
+
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+            <button
+              class="btn-primary px-8 py-3 text-white font-medium rounded-full glow interactive-element"
+            >
+              View My Work
+            </button>
+            <button
+              class="px-8 py-3 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition interactive-element"
+            >
+              Get In Touch
+            </button>
+          </div>
+        </div>
+
+        <div class="relative scroll-fade">
+          <div class="relative mx-auto max-w-md">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 blur-xl animate-pulse"
+            ></div>
+            <div class="relative tilt-card">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b6c3b1b-5cad-4212-b82f-6cd2e093dc04.png"
+                alt="Fayshal Karan - Digital Avatar"
+                class="rounded-full border-4 border-primary w-full glow interactive-element"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Enhanced About Section -->
+    <section id="about" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 scroll-fade">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            About Me
+          </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Passionate about creating innovative digital solutions that bridge
+            technology and creativity
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="scroll-fade">
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-xl opacity-20 blur-xl"
+              ></div>
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/43f71e7b-2a4d-4b5d-aa73-1c1521368cc8.png"
+                alt="Professional portrait"
+                class="rounded-xl w-full border-4 border-secondary glow interactive-element"
+              />
+            </div>
+          </div>
+
+          <div class="scroll-fade">
+            <div class="space-y-6">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                I'm a passionate fifth-semester
+                <span class="text-primary font-semibold"
+                  >Informatics Engineering</span
+                >
+                student specializing in game development, UI/UX design, and data
+                analysis. My journey combines technical expertise with creative
+                problem-solving to build immersive digital experiences.
+              </p>
+
+              <div class="space-y-4">
+                <div class="skill-item">
+                  <div class="flex justify-between mb-2">
+                    <span class="text-white font-medium">Game Development</span>
+                    <span class="text-primary">90%</span>
+                  </div>
+                  <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 90%"></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-2">
+                    <span class="text-white font-medium">UI/UX Design</span>
+                    <span class="text-primary">85%</span>
+                  </div>
+                  <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 85%"></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-2">
+                    <span class="text-white font-medium">Data Analysis</span>
+                    <span class="text-primary">80%</span>
+                  </div>
+                  <div class="skill-progress">
+                    <div class="skill-progress-bar" style="width: 80%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-dark-secondary rounded-xl p-6 border border-white/10"
+              >
+                <h3 class="text-xl font-semibold mb-3 gradient-text">
+                  What Drives Me
+                </h3>
+                <p class="text-gray-400">
+                  I believe in the power of technology to transform ideas into
+                  reality. Whether it's creating an immersive game experience,
+                  designing intuitive user interfaces, or uncovering insights
+                  from data, I'm always exploring new ways to push the
+                  boundaries of what's possible.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Enhanced Skills Section -->
+    <section id="passion" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 scroll-fade">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            My Passion Areas
+          </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Exploring the intersection of technology, creativity, and innovation
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Game Development -->
+          <div class="card-hover bg-dark-secondary rounded-xl p-8 scroll-fade">
+            <div class="text-accent mb-6">
+              <svg
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9h14M5 15h14m-9-5a1 1 0 011-1h0a1 1 0 011 1v0a1 1 0 01-1 1h0a1 1 0 01-1-1v0zm0 4a1 1 0 011-1h0a1 1 0 011 1v0a1 1 0 01-1 1h0a1 1 0 01-1-1v0z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-center">
+              Game Development
+            </h3>
+            <p class="text-gray-400 mb-6 text-center">
+              Creating immersive worlds and interactive experiences using
+              cutting-edge game engines and programming techniques.
+            </p>
+            <div class="flex flex-wrap gap-2 justify-center">
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Unity</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">C#</span>
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Unreal Engine</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Blender</span
+              >
+            </div>
+          </div>
+
+          <!-- UI/UX Design -->
+          <div class="card-hover bg-dark-secondary rounded-xl p-8 scroll-fade">
+            <div class="text-primary mb-6">
+              <svg
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-center">
+              UI/UX Design
+            </h3>
+            <p class="text-gray-400 mb-6 text-center">
+              Crafting intuitive and visually appealing interfaces that
+              prioritize user experience and accessibility.
+            </p>
+            <div class="flex flex-wrap gap-2 justify-center">
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Figma</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Adobe XD</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >React</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Framer</span
+              >
+            </div>
+          </div>
+
+          <!-- Data Analysis -->
+          <div class="card-hover bg-dark-secondary rounded-xl p-8 scroll-fade">
+            <div class="text-secondary mb-6">
+              <svg
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-center">
+              Data Analysis
+            </h3>
+            <p class="text-gray-400 mb-6 text-center">
+              Transforming raw data into actionable insights through statistical
+              analysis and machine learning.
+            </p>
+            <div class="flex flex-wrap gap-2 justify-center">
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Python</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">R</span>
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Pandas</span
+              >
+              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
+                >Tableau</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Enhanced Projects Section -->
+    <section id="projects" class="py-20 px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 scroll-fade">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            Featured Projects
+          </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            A showcase of my most impactful work combining technical skills with
+            creative design
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="card-hover bg-dark-secondary rounded-xl overflow-hidden scroll-fade"
+          >
+            <div class="project-preview relative h-64">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f90e6dc-f72a-496b-ba47-78ca9abe17a6.png"
+                alt="Nexus Protocol Game"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-accent rounded-full text-sm font-medium"
+                  >Game Development</span
+                >
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-2 gradient-text">
+                Nexus Protocol
+              </h3>
+              <p class="text-gray-400 mb-4">
+                An immersive sci-fi action RPG featuring procedurally generated
+                worlds and advanced AI systems.
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex space-x-2">
+                  <span class="px-2 py-1 bg-gray-800 rounded-full text-xs"
+                    >Unity</span
+                  >
+                  <span class="px-2 py-1 bg-gray-800 rounded-full text-xs"
+                    >C#</span
+                  >
+                  <span class="px-2 py-1 bg-gray-800 rounded-full text-xs"
+                    >HLSL</span
+                  >
+                </div>
+                <button
+                  class="text-primary hover:text-secondary transition interactive-element"
+                >
+                  View Project →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="card-hover bg-dark-secondary rounded-xl overflow-hidden scroll-fade"
+          >
+            <div class="project-preview relative h-64">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4d66dc81-98ba-46fd-bfda-7e169c87823d.png"
+                alt="Fintech Dashboard"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="px-3 py-1 bg-primary rounded-full text-sm font-medium"
+                  >UI/UX</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
