@@ -3,50 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fayshal Karan - Tech Enthusiast Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+    <title>Fayshal Karan - Creative Developer Portfolio</title>
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js for Skills Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- Custom CSS & Design System --- */
       :root {
-        --primary: #00d4ff;
-        --secondary: #8b5cf6;
-        --accent: #ff3366;
-        --dark: #0a0a0f;
-        --dark-secondary: #151520;
-        --light: #ffffff;
-        --text-muted: #94a3b8;
+        --primary: #00d4ff; /* Bright Cyan */
+        --secondary: #8b5cf6; /* Vibrant Purple */
+        --accent: #ff3366; /* Hot Pink */
+        --dark: #0a0a0f; /* Near Black */
+        --dark-secondary: #151520; /* Dark Gray */
+        --light: #ffffff; /* White */
+        --text-muted: #94a3b8; /* Slate Gray */
       }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      /* --- Global Styles --- */
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: "Inter", sans-serif;
         background-color: var(--dark);
         color: var(--light);
         overflow-x: hidden;
-        cursor: none;
+        cursor: none; /* Hide default cursor */
       }
 
-      /* Custom Cursor */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      /* --- Custom Cursor --- */
       .cursor {
         position: fixed;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         border: 2px solid var(--primary);
         border-radius: 50%;
         pointer-events: none;
         z-index: 9999;
-        transition: all 0.1s ease;
+        transition: all 0.1s ease-out;
         transform: translate(-50%, -50%);
       }
-
       .cursor-follower {
         position: fixed;
         width: 8px;
@@ -55,11 +73,16 @@
         border-radius: 50%;
         pointer-events: none;
         z-index: 9998;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease-out;
         transform: translate(-50%, -50%);
       }
+      .cursor-grow {
+        transform: scale(2.5) translate(-20%, -20%);
+        background-color: var(--primary);
+        opacity: 0.5;
+      }
 
-      /* Animated Background */
+      /* --- Animated Background --- */
       .animated-bg {
         position: fixed;
         top: 0;
@@ -69,125 +92,97 @@
         pointer-events: none;
         z-index: -1;
       }
-
       .bg-particle {
         position: absolute;
-        width: 2px;
-        height: 2px;
         background: var(--primary);
         border-radius: 50%;
-        opacity: 0.3;
-        animation: float 20s infinite linear;
+        opacity: 0;
+        animation: float 25s infinite linear;
       }
-
       @keyframes float {
         0% {
-          transform: translateY(100vh) translateX(0);
+          transform: translateY(100vh);
           opacity: 0;
         }
-        10% {
-          opacity: 0.3;
-        }
+        10%,
         90% {
-          opacity: 0.3;
+          opacity: 0.4;
         }
         100% {
-          transform: translateY(-100vh) translateX(100px);
+          transform: translateY(-10vh);
           opacity: 0;
         }
       }
 
-      /* Enhanced Navigation */
+      /* --- Navigation --- */
       .nav-link {
         position: relative;
-        padding: 0.5rem 1rem;
-        transition: all 0.3s ease;
-        border-radius: 0.5rem;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
       }
 
-      .nav-link::before {
-        content: "";
+      /* --- Hero Section --- */
+      .hero-section {
+        background: radial-gradient(
+            ellipse at 20% 80%,
+            rgba(139, 92, 246, 0.15) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(0, 212, 255, 0.15) 0%,
+            transparent 40%
+          ),
+          var(--dark);
+      }
+      .hero-pattern {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(45deg, var(--primary), var(--secondary));
-        border-radius: 0.5rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: -1;
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 40px 40px;
+        animation: pattern-move 30s linear infinite;
       }
-
-      .nav-link:hover::before {
-        opacity: 0.2;
+      @keyframes pattern-move {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 40px 40px;
+        }
       }
-
-      .nav-link:hover {
-        transform: translateY(-2px);
-        color: var(--primary);
-      }
-
-      /* Typing Animation */
       .typing-text::after {
         content: "|";
-        animation: blink 1s infinite;
+        animation: blink 0.7s infinite;
         color: var(--accent);
       }
-
       @keyframes blink {
-        0%,
         50% {
-          opacity: 1;
-        }
-        51%,
-        100% {
           opacity: 0;
         }
       }
 
-      /* Glowing Effects */
-      .glow {
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        transition: box-shadow 0.3s ease;
-      }
-
-      .glow:hover {
-        box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-      }
-
-      /* Card Hover Effects */
-      .card-hover {
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .card-hover:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        border-color: var(--primary);
-      }
-
-      /* Scroll Animations */
-      .scroll-fade {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s ease;
-      }
-
-      .scroll-fade.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* 3D Tilt Effect */
-      .tilt-card {
-        transform-style: preserve-3d;
-        transition: transform 0.1s ease;
-      }
-
-      /* Gradient Text */
+      /* --- Gradient Text --- */
       .gradient-text {
         background: linear-gradient(
           45deg,
@@ -198,9 +193,9 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradient-shift 3s ease-in-out infinite;
+        background-size: 200% 200%;
+        animation: gradient-shift 4s ease-in-out infinite;
       }
-
       @keyframes gradient-shift {
         0%,
         100% {
@@ -211,149 +206,89 @@
         }
       }
 
-      /* Particle System */
-      .particle-system {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-      }
-
-      /* Button Animations */
-      .btn-primary {
-        background: linear-gradient(45deg, var(--primary), var(--secondary));
-        position: relative;
-        overflow: hidden;
+      /* --- Card & Button Effects --- */
+      .glass-card {
+        background: rgba(
+          21,
+          21,
+          32,
+          0.6
+        ); /* var(--dark-secondary) with alpha */
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
       }
-
-      .btn-primary::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: left 0.5s ease;
+      .glass-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       }
-
-      .btn-primary:hover::before {
-        left: 100%;
+      .btn-primary {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        transition: all 0.3s ease;
       }
-
       .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.25);
       }
 
-      /* Skills Progress Animation */
-      .skill-progress {
-        position: relative;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
-        overflow: hidden;
+      /* --- Scroll Animations --- */
+      .scroll-fade {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .scroll-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
-      .skill-progress-bar {
-        height: 100%;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        border-radius: 2px;
-        transition: width 2s ease;
-        position: relative;
-      }
-
-      .skill-progress-bar::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+      /* --- Section Divider --- */
+      .section-divider {
+        height: 1px;
         background: linear-gradient(
           90deg,
           transparent,
-          rgba(255, 255, 255, 0.3),
+          var(--primary),
           transparent
         );
-        animation: shimmer 2s infinite;
+        opacity: 0.3;
       }
 
-      @keyframes shimmer {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
+      /* --- Skills Chart --- */
+      #skillsChart {
+        max-height: 450px;
       }
 
-      /* Mobile Responsive */
+      /* --- 3D Tilt Effect --- */
+      .tilt-card {
+        transform-style: preserve-3d;
+        transition: transform 0.1s linear;
+      }
+
+      /* --- Custom Scrollbar --- */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--dark-secondary);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(var(--primary), var(--secondary));
+        border-radius: 4px;
+      }
+
+      /* --- Mobile Responsiveness --- */
       @media (max-width: 768px) {
         .cursor,
         .cursor-follower {
           display: none;
         }
-
         body {
           cursor: default;
         }
       }
-
-      /* Hero Section Enhancements */
-      .hero-section {
-        background: radial-gradient(
-            circle at 20% 80%,
-            rgba(139, 92, 246, 0.3) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(0, 212, 255, 0.3) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 40% 40%,
-            rgba(255, 51, 102, 0.2) 0%,
-            transparent 50%
-          );
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero-pattern {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: radial-gradient(
-          circle at 1px 1px,
-          rgba(255, 255, 255, 0.1) 1px,
-          transparent 0
-        );
-        background-size: 50px 50px;
-        animation: pattern-move 20s linear infinite;
-      }
-
-      @keyframes pattern-move {
-        0% {
-          background-position: 0 0;
-        }
-        100% {
-          background-position: 50px 50px;
-        }
-      }
-
-      /* Loading Screen */
-      .loading-screen {
+      .mobile-nav {
         position: fixed;
         top: 0;
         left: 0;
@@ -361,109 +296,19 @@
         height: 100%;
         background: var(--dark);
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        z-index: 10000;
-        transition: opacity 0.5s ease;
+        transform: translateY(-100%);
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        z-index: 40;
       }
-
-      .loading-animation {
-        width: 50px;
-        height: 50px;
-        border: 3px solid rgba(0, 212, 255, 0.3);
-        border-top: 3px solid var(--primary);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Section Dividers */
-      .section-divider {
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--primary),
-          transparent
-        );
-        margin: 4rem 0;
-        opacity: 0.5;
-      }
-
-      /* Enhanced Project Cards */
-      .project-preview {
-        position: relative;
-        overflow: hidden;
-        border-radius: 1rem;
-        transition: all 0.3s ease;
-      }
-
-      .project-preview::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, var(--primary), var(--secondary));
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: 1;
-      }
-
-      .project-preview:hover::before {
-        opacity: 0.1;
-      }
-
-      /* Interactive Elements */
-      .interactive-element {
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-
-      .interactive-element:hover {
-        transform: scale(1.05);
-        filter: brightness(1.1);
-      }
-
-      /* Smooth Scroll */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: var(--dark);
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(45deg, var(--primary), var(--secondary));
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(45deg, var(--secondary), var(--accent));
+      .mobile-nav.open {
+        transform: translateY(0);
       }
     </style>
   </head>
-  <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-      <div class="loading-animation"></div>
-    </div>
-
+  <body class="bg-dark text-light">
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
@@ -471,25 +316,29 @@
     <!-- Animated Background -->
     <div class="animated-bg" id="animatedBg"></div>
 
-    <!-- Enhanced Navigation -->
-    <nav
-      class="fixed w-full bg-black/80 backdrop-blur-md z-50 px-6 py-4 border-b border-white/10"
+    <!-- Header & Navigation -->
+    <header
+      class="fixed w-full bg-dark/80 backdrop-blur-lg z-50 border-b border-white/10 transition-all duration-300"
     >
-      <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <div class="text-2xl font-bold">
-          <span class="gradient-text">Fayshal</span>
-          <span class="text-white">Karan</span>
-        </div>
-        <div class="hidden md:flex space-x-2">
-          <a href="#home" class="nav-link text-white">Home</a>
+      <nav
+        class="max-w-7xl mx-auto flex justify-between items-center p-4 md:p-6"
+      >
+        <a href="#home" class="text-3xl font-bold">
+          <span class="gradient-text">F</span><span class="text-white">K</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#home" class="nav-link text-white active">Home</a>
           <a href="#about" class="nav-link text-white">About</a>
-          <a href="#passion" class="nav-link text-white">Passion</a>
           <a href="#projects" class="nav-link text-white">Projects</a>
           <a href="#contact" class="nav-link text-white">Contact</a>
         </div>
-        <button class="md:hidden text-white relative z-50" id="mobileMenuBtn">
+        <button
+          class="md:hidden text-white z-50"
+          id="mobileMenuBtn"
+          aria-label="Open menu"
+        >
           <svg
-            class="h-6 w-6"
+            class="h-7 w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -498,391 +347,607 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
+              d="M4 6h16M4 12h16m-7 6h7"
             />
           </svg>
         </button>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-    <!-- Enhanced Hero Section -->
-    <section
-      id="home"
-      class="hero-section min-h-screen flex items-center pt-20 pb-16 px-6 relative"
-    >
-      <div class="hero-pattern"></div>
-      <div class="particle-system" id="heroParticles"></div>
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="mobile-nav">
+      <a href="#home" class="text-4xl font-bold mb-8">Home</a>
+      <a href="#about" class="text-4xl font-bold mb-8">About</a>
+      <a href="#projects" class="text-4xl font-bold mb-8">Projects</a>
+      <a href="#contact" class="text-4xl font-bold">Contact</a>
+    </div>
 
-      <div
-        class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="hero-section min-h-screen flex items-center pt-24 pb-16 px-4 relative overflow-hidden"
       >
-        <div class="text-center md:text-left scroll-fade">
-          <div class="mb-6">
-            <p class="text-var(--text-muted) mb-2">Hello, I'm</p>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+        <div class="hero-pattern"></div>
+        <div
+          class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
+        >
+          <!-- Left Column: Image -->
+          <div class="scroll-fade">
+            <div class="relative tilt-card max-w-sm mx-auto">
+              <div
+                class="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 blur-2xl animate-pulse"
+              ></div>
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b6c3b1b-5cad-4212-b82f-6cd2e093dc04.png"
+                alt="Digital Avatar of Fayshal Karan"
+                class="relative rounded-full w-full border-4 border-primary/50 shadow-2xl"
+                onerror="this.onerror=null;this.src='https://placehold.co/400x400/151520/FFFFFF?text=Fayshal';"
+              />
+            </div>
+          </div>
+          <!-- Right Column: Text Content -->
+          <div class="text-center md:text-left scroll-fade">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
               <span class="gradient-text typing-text" id="typingText"
                 >Fayshal Karan</span
               >
             </h1>
-            <p class="text-2xl md:text-3xl text-var(--text-muted) mb-4">
-              Tech Enthusiast & Developer
+            <p
+              class="text-xl md:text-2xl text-text-muted mb-8 max-w-xl mx-auto md:mx-0"
+            >
+              A Creative Developer passionate about building beautiful and
+              functional digital experiences. I turn complex problems into
+              elegant solutions.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+              <a
+                href="#projects"
+                class="btn-primary px-8 py-3 text-white font-bold rounded-full text-lg"
+              >
+                View My Work
+              </a>
+              <a
+                href="#contact"
+                class="px-8 py-3 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-dark transition-all duration-300 text-lg"
+              >
+                Get In Touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16 scroll-fade">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+              <span class="gradient-text">About Me</span>
+            </h2>
+            <p class="text-xl text-text-muted max-w-2xl mx-auto">
+              Bridging the gap between technology, design, and data.
             </p>
           </div>
 
-          <p class="text-xl text-gray-300 mb-8 max-w-lg">
-            Game Developer • UI/UX Designer • Data Analyst
-            <br />
-            <span class="gradient-text"
-              >Creating digital experiences that inspire and innovate</span
-            >
-          </p>
-
-          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-            <button
-              class="btn-primary px-8 py-3 text-white font-medium rounded-full glow interactive-element"
-            >
-              View My Work
-            </button>
-            <button
-              class="px-8 py-3 border-2 border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition interactive-element"
-            >
-              Get In Touch
-            </button>
-          </div>
-        </div>
-
-        <div class="relative scroll-fade">
-          <div class="relative mx-auto max-w-md">
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 blur-xl animate-pulse"
-            ></div>
-            <div class="relative tilt-card">
-              <img
-                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b6c3b1b-5cad-4212-b82f-6cd2e093dc04.png"
-                alt="Fayshal Karan - Digital Avatar"
-                class="rounded-full border-4 border-primary w-full glow interactive-element"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Enhanced About Section -->
-    <section id="about" class="py-20 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-fade">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            About Me
-          </h2>
-          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-            Passionate about creating innovative digital solutions that bridge
-            technology and creativity
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="scroll-fade">
-            <div class="relative">
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-xl opacity-20 blur-xl"
-              ></div>
-              <img
-                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/43f71e7b-2a4d-4b5d-aa73-1c1521368cc8.png"
-                alt="Professional portrait"
-                class="rounded-xl w-full border-4 border-secondary glow interactive-element"
-              />
-            </div>
-          </div>
-
-          <div class="scroll-fade">
-            <div class="space-y-6">
-              <p class="text-lg text-gray-300 leading-relaxed">
-                I'm a passionate fifth-semester
+          <div class="grid md:grid-cols-5 gap-12 items-center">
+            <div class="md:col-span-3 scroll-fade">
+              <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                I'm a fifth-semester
                 <span class="text-primary font-semibold"
                   >Informatics Engineering</span
                 >
-                student specializing in game development, UI/UX design, and data
-                analysis. My journey combines technical expertise with creative
-                problem-solving to build immersive digital experiences.
+                student with a deep passion for game development, UI/UX design,
+                and data analysis. My goal is to craft immersive and intuitive
+                digital products that not only look great but also solve
+                real-world problems.
               </p>
-
-              <div class="space-y-4">
-                <div class="skill-item">
-                  <div class="flex justify-between mb-2">
-                    <span class="text-white font-medium">Game Development</span>
-                    <span class="text-primary">90%</span>
-                  </div>
-                  <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 90%"></div>
-                  </div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="flex justify-between mb-2">
-                    <span class="text-white font-medium">UI/UX Design</span>
-                    <span class="text-primary">85%</span>
-                  </div>
-                  <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 85%"></div>
-                  </div>
-                </div>
-
-                <div class="skill-item">
-                  <div class="flex justify-between mb-2">
-                    <span class="text-white font-medium">Data Analysis</span>
-                    <span class="text-primary">80%</span>
-                  </div>
-                  <div class="skill-progress">
-                    <div class="skill-progress-bar" style="width: 80%"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="bg-dark-secondary rounded-xl p-6 border border-white/10"
-              >
-                <h3 class="text-xl font-semibold mb-3 gradient-text">
-                  What Drives Me
+              <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                I thrive on challenges and am constantly learning new
+                technologies to push the boundaries of what's possible. From
+                coding interactive game mechanics to designing user-centric
+                interfaces and uncovering hidden patterns in data, I love the
+                entire creative process.
+              </p>
+              <div class="glass-card rounded-xl p-6">
+                <h3 class="text-xl font-semibold mb-4 gradient-text">
+                  Core Competencies
                 </h3>
-                <p class="text-gray-400">
-                  I believe in the power of technology to transform ideas into
-                  reality. Whether it's creating an immersive game experience,
-                  designing intuitive user interfaces, or uncovering insights
-                  from data, I'm always exploring new ways to push the
-                  boundaries of what's possible.
+                <div class="flex flex-wrap gap-3">
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Game Development</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >UI/UX Design</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Data Analysis</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Unity & C#</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Figma</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Python</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="md:col-span-2 scroll-fade">
+              <div class="relative tilt-card">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/43f71e7b-2a4d-4b5d-aa73-1c1521368cc8.png"
+                  alt="A professional portrait of Fayshal Karan"
+                  class="relative rounded-xl w-full border-2 border-white/10 shadow-2xl"
+                  onerror="this.onerror=null;this.src='https://placehold.co/600x700/151520/FFFFFF?text=Image';"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="max-w-7xl mx-auto section-divider"></div>
+
+      <!-- Skills & Tools Section -->
+      <section id="skills" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16 scroll-fade">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+              <span class="gradient-text">Skills & Expertise</span>
+            </h2>
+            <p class="text-xl text-text-muted max-w-2xl mx-auto">
+              A visual representation of my technical capabilities.
+            </p>
+          </div>
+          <div class="scroll-fade h-[450px]">
+            <canvas id="skillsChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <div class="max-w-7xl mx-auto section-divider"></div>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16 scroll-fade">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+              <span class="gradient-text">Featured Projects</span>
+            </h2>
+            <p class="text-xl text-text-muted max-w-2xl mx-auto">
+              A selection of my work that showcases my skills and passion.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Project 1 -->
+            <div class="glass-card rounded-xl overflow-hidden scroll-fade">
+              <div class="relative">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f90e6dc-f72a-496b-ba47-78ca9abe17a6.png"
+                  alt="Nexus Protocol Game"
+                  class="w-full h-64 object-cover"
+                  onerror="this.onerror=null;this.src='https://placehold.co/600x400/151520/FFFFFF?text=Nexus+Protocol';"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"
+                ></div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-2xl font-bold mb-2">Nexus Protocol</h3>
+                <p class="text-text-muted mb-4">
+                  An immersive sci-fi action RPG featuring procedurally
+                  generated worlds and advanced AI systems in Unity.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Enhanced Skills Section -->
-    <section id="passion" class="py-20 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-fade">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            My Passion Areas
-          </h2>
-          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-            Exploring the intersection of technology, creativity, and innovation
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Game Development -->
-          <div class="card-hover bg-dark-secondary rounded-xl p-8 scroll-fade">
-            <div class="text-accent mb-6">
-              <svg
-                class="h-16 w-16 mx-auto"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9h14M5 15h14m-9-5a1 1 0 011-1h0a1 1 0 011 1v0a1 1 0 01-1 1h0a1 1 0 01-1-1v0zm0 4a1 1 0 011-1h0a1 1 0 011 1v0a1 1 0 01-1 1h0a1 1 0 01-1-1v0z"
-                />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-center">
-              Game Development
-            </h3>
-            <p class="text-gray-400 mb-6 text-center">
-              Creating immersive worlds and interactive experiences using
-              cutting-edge game engines and programming techniques.
-            </p>
-            <div class="flex flex-wrap gap-2 justify-center">
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Unity</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">C#</span>
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Unreal Engine</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Blender</span
-              >
-            </div>
-          </div>
-
-          <!-- UI/UX Design -->
-          <div class="card-hover bg-dark-secondary rounded-xl p-8 scroll-fade">
-            <div class="text-primary mb-6">
-              <svg
-                class="h-16 w-16 mx-auto"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-center">
-              UI/UX Design
-            </h3>
-            <p class="text-gray-400 mb-6 text-center">
-              Crafting intuitive and visually appealing interfaces that
-              prioritize user experience and accessibility.
-            </p>
-            <div class="flex flex-wrap gap-2 justify-center">
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Figma</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Adobe XD</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >React</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Framer</span
-              >
-            </div>
-          </div>
-
-          <!-- Data Analysis -->
-          <div class="card-hover bg-dark-secondary rounded-xl p-8 scroll-fade">
-            <div class="text-secondary mb-6">
-              <svg
-                class="h-16 w-16 mx-auto"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-center">
-              Data Analysis
-            </h3>
-            <p class="text-gray-400 mb-6 text-center">
-              Transforming raw data into actionable insights through statistical
-              analysis and machine learning.
-            </p>
-            <div class="flex flex-wrap gap-2 justify-center">
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Python</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">R</span>
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Pandas</span
-              >
-              <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-                >Tableau</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Enhanced Projects Section -->
-    <section id="projects" class="py-20 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-fade">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            Featured Projects
-          </h2>
-          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-            A showcase of my most impactful work combining technical skills with
-            creative design
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <!-- Project 1 -->
-          <div
-            class="card-hover bg-dark-secondary rounded-xl overflow-hidden scroll-fade"
-          >
-            <div class="project-preview relative h-64">
-              <img
-                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f90e6dc-f72a-496b-ba47-78ca9abe17a6.png"
-                alt="Nexus Protocol Game"
-                class="w-full h-full object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"
-              ></div>
-              <div class="absolute bottom-4 left-4">
-                <span
-                  class="px-3 py-1 bg-accent rounded-full text-sm font-medium"
-                  >Game Development</span
-                >
-              </div>
-            </div>
-            <div class="p-8">
-              <h3 class="text-2xl font-bold mb-2 gradient-text">
-                Nexus Protocol
-              </h3>
-              <p class="text-gray-400 mb-4">
-                An immersive sci-fi action RPG featuring procedurally generated
-                worlds and advanced AI systems.
-              </p>
-              <div class="flex justify-between items-center">
-                <div class="flex space-x-2">
-                  <span class="px-2 py-1 bg-gray-800 rounded-full text-xs"
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-primary border border-primary/50"
                     >Unity</span
                   >
-                  <span class="px-2 py-1 bg-gray-800 rounded-full text-xs"
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-primary border border-primary/50"
                     >C#</span
                   >
-                  <span class="px-2 py-1 bg-gray-800 rounded-full text-xs"
-                    >HLSL</span
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-primary border border-primary/50"
+                    >HLSL Shaders</span
                   >
                 </div>
-                <button
-                  class="text-primary hover:text-secondary transition interactive-element"
+                <a
+                  href="#"
+                  class="font-bold text-secondary hover:text-primary transition-colors"
+                  >View Project →</a
                 >
-                  View Project →
-                </button>
               </div>
             </div>
-          </div>
 
-          <!-- Project 2 -->
-          <div
-            class="card-hover bg-dark-secondary rounded-xl overflow-hidden scroll-fade"
-          >
-            <div class="project-preview relative h-64">
-              <img
-                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4d66dc81-98ba-46fd-bfda-7e169c87823d.png"
-                alt="Fintech Dashboard"
-                class="w-full h-full object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"
-              ></div>
-              <div class="absolute bottom-4 left-4">
-                <span
-                  class="px-3 py-1 bg-primary rounded-full text-sm font-medium"
-                  >UI/UX</span
+            <!-- Project 2 -->
+            <div
+              class="glass-card rounded-xl overflow-hidden scroll-fade"
+              style="transition-delay: 150ms"
+            >
+              <div class="relative">
+                <img
+                  src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4d66dc81-98ba-46fd-bfda-7e169c87823d.png"
+                  alt="Fintech Dashboard UI/UX Project"
+                  class="w-full h-64 object-cover"
+                  onerror="this.onerror=null;this.src='https://placehold.co/600x400/151520/FFFFFF?text=Fintech+Dashboard';"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"
+                ></div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-2xl font-bold mb-2">Fintech Dashboard UI</h3>
+                <p class="text-text-muted mb-4">
+                  A sleek, modern dashboard design for a financial technology
+                  app, focusing on data visualization and user experience.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
+                    >Figma</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
+                    >UI/UX Research</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
+                    >Prototyping</span
+                  >
+                </div>
+                <a
+                  href="#"
+                  class="font-bold text-secondary hover:text-primary transition-colors"
+                  >View Case Study →</a
                 >
               </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-24 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+          <div class="scroll-fade">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+              <span class="gradient-text">Let's Connect</span>
+            </h2>
+            <p class="text-xl text-text-muted mb-12">
+              Have a project in mind or just want to connect? My inbox is always
+              open.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Email -->
+            <a
+              href="mailto:fayshal.karan@email.com"
+              class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
+            >
+              <svg
+                class="w-12 h-12 mb-4 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold">Email</h3>
+              <p class="text-text-muted">Send a message</p>
+            </a>
+            <!-- GitHub -->
+            <a
+              href="#"
+              class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
+              style="transition-delay: 100ms"
+            >
+              <svg
+                class="w-12 h-12 mb-4 text-primary"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold">GitHub</h3>
+              <p class="text-text-muted">View my code</p>
+            </a>
+            <!-- LinkedIn -->
+            <a
+              href="#"
+              class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
+              style="transition-delay: 200ms"
+            >
+              <svg
+                class="w-12 h-12 mb-4 text-primary"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold">LinkedIn</h3>
+              <p class="text-text-muted">Connect professionally</p>
+            </a>
+            <!-- WhatsApp -->
+            <a
+              href="#"
+              class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
+              style="transition-delay: 300ms"
+            >
+              <svg
+                class="w-12 h-12 mb-4 text-primary"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.457l-6.354 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.001.004 4.971 4.971z"
+                ></path>
+              </svg>
+              <h3 class="text-xl font-semibold">WhatsApp</h3>
+              <p class="text-text-muted">Chat with me</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8 px-4">
+      <div class="max-w-7xl mx-auto text-center text-text-muted">
+        <p>&copy; 2025 Fayshal Karan. Crafted with passion and code.</p>
+        <div class="flex justify-center space-x-6 mt-4">
+          <a href="#" class="hover:text-primary transition-colors">GitHub</a>
+          <a href="#" class="hover:text-primary transition-colors">LinkedIn</a>
+          <a href="#" class="hover:text-primary transition-colors">Twitter</a>
+        </div>
       </div>
-    </section>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Custom Cursor Logic ---
+        const cursor = document.getElementById("cursor");
+        const cursorFollower = document.getElementById("cursorFollower");
+        const interactiveElements = document.querySelectorAll(
+          "a, button, .interactive-element"
+        );
+
+        document.addEventListener("mousemove", (e) => {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+          cursorFollower.style.left = e.clientX + "px";
+          cursorFollower.style.top = e.clientY + "px";
+        });
+
+        interactiveElements.forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            cursor.classList.add("cursor-grow")
+          );
+          el.addEventListener("mouseleave", () =>
+            cursor.classList.remove("cursor-grow")
+          );
+        });
+
+        // --- Animated Background Particles ---
+        const animatedBg = document.getElementById("animatedBg");
+        const particleCount = 50;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "bg-particle";
+          const size = Math.random() * 3 + 1;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.animationDelay = `${Math.random() * 25}s`;
+          particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+          animatedBg.appendChild(particle);
+        }
+
+        // --- Typing Animation ---
+        const typingTextElement = document.getElementById("typingText");
+        const words = [
+          "Fayshal Karan",
+          "A Game Developer",
+          "A UI/UX Designer",
+          "A Data Analyst",
+        ];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+          const currentWord = words[wordIndex];
+          if (isDeleting) {
+            typingTextElement.textContent = currentWord.substring(
+              0,
+              charIndex - 1
+            );
+            charIndex--;
+          } else {
+            typingTextElement.textContent = currentWord.substring(
+              0,
+              charIndex + 1
+            );
+            charIndex++;
+          }
+
+          let typeSpeed = isDeleting ? 75 : 150;
+
+          if (!isDeleting && charIndex === currentWord.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+          } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+          }
+
+          setTimeout(type, typeSpeed);
+        }
+        type();
+
+        // --- Scroll-triggered Animations ---
+        const scrollElements = document.querySelectorAll(".scroll-fade");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        scrollElements.forEach((el) => observer.observe(el));
+
+        // --- 3D Tilt Effect ---
+        const tiltCards = document.querySelectorAll(".tilt-card");
+        tiltCards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const { width, height } = rect;
+            const rotateX = (y / height - 0.5) * -15; // Max rotation 7.5deg
+            const rotateY = (x / width - 0.5) * 15; // Max rotation 7.5deg
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+          });
+          card.addEventListener("mouseleave", () => {
+            card.style.transform =
+              "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+          });
+        });
+
+        // --- Skills Chart ---
+        const skillsCtx = document.getElementById("skillsChart");
+        let chartInstance;
+
+        const chartObserver = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting && !chartInstance) {
+              chartInstance = new Chart(skillsCtx, {
+                type: "radar",
+                data: {
+                  labels: [
+                    "Game Dev (Unity/C#)",
+                    "UI/UX (Figma)",
+                    "Data Analysis (Python)",
+                    "Web Dev (React)",
+                    "3D Modeling (Blender)",
+                    "Problem Solving",
+                  ],
+                  datasets: [
+                    {
+                      label: "Proficiency",
+                      data: [90, 85, 80, 75, 70, 95],
+                      backgroundColor: "rgba(0, 212, 255, 0.2)",
+                      borderColor: "rgba(0, 212, 255, 1)",
+                      pointBackgroundColor: "var(--light)",
+                      pointBorderColor: "var(--primary)",
+                      pointHoverBackgroundColor: "#fff",
+                      pointHoverBorderColor: "rgba(0, 212, 255, 1)",
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    r: {
+                      angleLines: { color: "rgba(255, 255, 255, 0.2)" },
+                      grid: { color: "rgba(255, 255, 255, 0.2)" },
+                      pointLabels: {
+                        font: {
+                          size: 14,
+                          family: "'Space Grotesk', sans-serif",
+                        },
+                        color: "var(--light)", // FIXED: Changed color for readability
+                      },
+                      ticks: {
+                        backdropColor: "transparent",
+                        color: "var(--text-muted)",
+                        stepSize: 20,
+                      },
+                    },
+                  },
+                  plugins: {
+                    legend: { display: false },
+                  },
+                  animation: {
+                    duration: 2000,
+                    easing: "easeInOutQuint",
+                  },
+                  maintainAspectRatio: false,
+                },
+              });
+              chartObserver.unobserve(skillsCtx); // Stop observing once chart is created
+            }
+          },
+          { threshold: 0.5 }
+        );
+
+        if (skillsCtx) {
+          chartObserver.observe(skillsCtx);
+        }
+
+        // --- Active Nav Link Highlighting on Scroll ---
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 75) {
+              current = section.getAttribute("id");
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").includes(current)) {
+              link.classList.add("active");
+            }
+          });
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileNavLinks = mobileMenu.querySelectorAll("a");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("open");
+        });
+
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("open");
+          });
+        });
+      });
+    </script>
   </body>
 </html>
