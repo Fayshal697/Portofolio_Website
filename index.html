@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fayshal Karan - Creative Developer Portfolio</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Chart.js for Skills Chart -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 
-    <!-- cdnjs for awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -309,17 +308,22 @@
       .mobile-nav.open {
         transform: translateY(0);
       }
+
+      /* --- Perbaikan warna input text --- */
+      .contact-input::placeholder {
+        color: var(--text-muted);
+      }
+      .contact-input {
+        color: var(--dark);
+      }
     </style>
   </head>
   <body class="bg-dark text-light">
-    <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
 
-    <!-- Animated Background -->
     <div class="animated-bg" id="animatedBg"></div>
 
-    <!-- Header & Navigation -->
     <header
       class="fixed w-full bg-dark/80 backdrop-blur-lg z-50 border-b border-white/10 transition-all duration-300"
     >
@@ -357,7 +361,6 @@
       </nav>
     </header>
 
-    <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="mobile-nav">
       <a href="#home" class="text-4xl font-bold mb-8">Home</a>
       <a href="#about" class="text-4xl font-bold mb-8">About</a>
@@ -366,7 +369,6 @@
     </div>
 
     <main>
-      <!-- Hero Section -->
       <section
         id="home"
         class="hero-section min-h-screen flex items-center pt-24 pb-16 px-4 relative overflow-hidden"
@@ -375,7 +377,6 @@
         <div
           class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10"
         >
-          <!-- Left Column: Image -->
           <div class="scroll-fade">
             <div class="relative tilt-card max-w-sm mx-auto">
               <div
@@ -389,7 +390,6 @@
               />
             </div>
           </div>
-          <!-- Right Column: Text Content -->
           <div class="text-center md:text-left scroll-fade">
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
               <span class="gradient-text typing-text" id="typingText"
@@ -426,7 +426,6 @@
         </div>
       </section>
 
-      <!-- About Section -->
       <section id="about" class="py-24 px-4">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-16 scroll-fade">
@@ -441,23 +440,62 @@
           <div class="grid md:grid-cols-5 gap-12 items-center">
             <div class="md:col-span-3 scroll-fade">
               <p class="text-lg text-gray-300 leading-relaxed mb-6">
-                As a passionate <span class="text-primary font-semibold">Informatics Engineering</span> student, I specialize in blending technology, design, and data to create meaningful digital experiences. My expertise lies at the intersection of <span class="text-secondary font-semibold">game development</span>, <span class="text-secondary font-semibold">UI/UX design</span>, and <span class="text-secondary font-semibold">data analysis</span>—fields where creativity meets logic and innovation.
+                As a passionate
+                <span class="text-primary font-semibold"
+                  >Informatics Engineering</span
+                >
+                student, I specialize in blending technology, design, and data
+                to create meaningful digital experiences. My expertise lies at
+                the intersection of
+                <span class="text-secondary font-semibold"
+                  >game development</span
+                >,
+                <span class="text-secondary font-semibold">UI/UX design</span>,
+                and
+                <span class="text-secondary font-semibold">data analysis</span
+                >—fields where creativity meets logic and innovation.
               </p>
               <p class="text-lg text-gray-300 leading-relaxed mb-8">
-                I thrive on transforming complex ideas into engaging, intuitive products—whether it’s building immersive game worlds in Unity, designing seamless user journeys in Figma, or uncovering actionable insights from data. My approach is hands-on, collaborative, and always driven by curiosity and a desire to push creative boundaries.
+                I thrive on transforming complex ideas into engaging, intuitive
+                products—whether it’s building immersive game worlds in Unity,
+                designing seamless user journeys in Figma, or uncovering
+                actionable insights from data. My approach is hands-on,
+                collaborative, and always driven by curiosity and a desire to
+                push creative boundaries.
               </p>
               <div class="glass-card rounded-xl p-6">
                 <h3 class="text-xl font-semibold mb-4 gradient-text">
                   What I Bring to the Table
                 </h3>
                 <div class="flex flex-wrap gap-3">
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">Game Design & Development</span>
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">UI/UX Strategy</span>
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">Data Visualization</span>
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">Unity & C#</span>
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">Figma & Prototyping</span>
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">Python & Analytics</span>
-                  <span class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10">Creative Problem Solving</span>
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Game Design & Development</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >UI/UX Strategy</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Data Visualization</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Unity & C#</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Figma & Prototyping</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Python & Analytics</span
+                  >
+                  <span
+                    class="px-4 py-2 bg-dark rounded-full text-sm font-medium border border-white/10"
+                    >Creative Problem Solving</span
+                  >
                 </div>
               </div>
             </div>
@@ -477,7 +515,6 @@
 
       <div class="max-w-7xl mx-auto section-divider"></div>
 
-      <!-- Skills & Tools Section -->
       <section id="skills" class="py-24 px-4">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-16 scroll-fade">
@@ -492,70 +529,106 @@
             <canvas id="skillsChart"></canvas>
           </div>
         </div>
-      
+        <br />
+        <br />
+        <br />
+        <div class="max-w-7xl mx-auto section-divider"></div>
 
-      <div class="max-w-7xl mx-auto section-divider"></div>
-
-              <!-- Experience & Education Sub-Sections -->
         <div class="max-w-7xl mx-auto mt-16">
-          <!-- Experience -->
           <div class="mb-12">
-            <h3 class="text-2xl md:text-3xl font-bold mb-6 gradient-text text-center md:text-left">Experience</h3>
+            <h3
+              class="text-2xl md:text-3xl font-bold mb-6 gradient-text text-center md:text-left"
+            >
+              Experience
+            </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
               <div class="glass-card rounded-xl p-5 text-center">
-                <h4 class="font-semibold mb-2">General Secretary of Student Association</h4>
-                <p class="text-text-muted text-sm">IT UNIDA Gontor, 2023-2025</p>
+                <h4 class="font-semibold mb-2">
+                  General Secretary of Student Association
+                </h4>
+                <p class="text-text-muted text-sm">
+                  IT UNIDA Gontor, 2023-2025
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
                 <h4 class="font-semibold mb-2">UNIDA Game Developer</h4>
-                <p class="text-text-muted text-sm">GDU UNIDA Gontor, 2024-Present</p>
+                <p class="text-text-muted text-sm">
+                  GDU UNIDA Gontor, 2024-Present
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
                 <h4 class="font-semibold mb-2">Assistant Lecture</h4>
-                <p class="text-text-muted text-sm">IT UNIDA Gontor, 2025-Present</p>
+                <p class="text-text-muted text-sm">
+                  IT UNIDA Gontor, 2025-Present
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
-                <h4 class="font-semibold mb-2">Mentor of UNIDA Game Developer</h4>
-                <p class="text-text-muted text-sm">GDU UNIDA Gontor, 2025-Present</p>
+                <h4 class="font-semibold mb-2">
+                  Mentor of UNIDA Game Developer
+                </h4>
+                <p class="text-text-muted text-sm">
+                  GDU UNIDA Gontor, 2025-Present
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
                 <h4 class="font-semibold mb-2">Judge of UI/UX Competition</h4>
-                <p class="text-text-muted text-sm">Festival Teknik Informatika Darussalam, 2024</p>
+                <p class="text-text-muted text-sm">
+                  Festival Teknik Informatika Darussalam, 2024
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
-                <h4 class="font-semibold mb-2">Certified Expertise: UI Designer in Visual, Prototype, and Usability Test</h4>
+                <h4 class="font-semibold mb-2">
+                  Certified Expertise: UI Designer in Visual, Prototype, and
+                  Usability Test
+                </h4>
                 <p class="text-text-muted text-sm">BuildWithAngga, 2024</p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
                 <h4 class="font-semibold mb-2">Sound Event Organizer</h4>
-                <p class="text-text-muted text-sm">UNIDA Gontor, 2023-Present</p>
+                <p class="text-text-muted text-sm">
+                  UNIDA Gontor, 2023-Present
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
-                <h4 class="font-semibold mb-2">Grpahic Design Divison Committee</h4>
-                <p class="text-text-muted text-sm">UNIDA Gontor, 2023-Present</p>
+                <h4 class="font-semibold mb-2">
+                  Grpahic Design Divison Committee
+                </h4>
+                <p class="text-text-muted text-sm">
+                  UNIDA Gontor, 2023-Present
+                </p>
               </div>
             </div>
           </div>
-          <!-- Education -->
           <div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-6 gradient-text text-center md:text-left">Education</h3>
+            <h3
+              class="text-2xl md:text-3xl font-bold mb-6 gradient-text text-center md:text-left"
+            >
+              Education
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="glass-card rounded-xl p-5 text-center">
-                <h4 class="font-semibold mb-2">B.Sc. Informatics Engineering</h4>
-                <p class="text-text-muted text-sm">University of Darussalam Gontor, 2023-Present</p>
+                <h4 class="font-semibold mb-2">
+                  B.Sc. Informatics Engineering
+                </h4>
+                <p class="text-text-muted text-sm">
+                  University of Darussalam Gontor, 2023-Present
+                </p>
               </div>
               <div class="glass-card rounded-xl p-5 text-center">
-                <h4 class="font-semibold mb-2">Kulliyatu-l-Mu'allimin Al-Islamiyyah (KMI)</h4>
-                <p class="text-text-muted text-sm">Modern Islamic Institution Darussalam Gontor, 2018-2023</p>
+                <h4 class="font-semibold mb-2">
+                  Kulliyatu-l-Mu'allimin Al-Islamiyyah (KMI)
+                </h4>
+                <p class="text-text-muted text-sm">
+                  Modern Islamic Institution Darussalam Gontor, 2018-2023
+                </p>
               </div>
             </div>
           </div>
         </div>
-        </section>
+      </section>
 
-              <div class="max-w-7xl mx-auto section-divider"></div>
+      <div class="max-w-7xl mx-auto section-divider"></div>
 
-      <!-- Projects Section -->
       <section id="projects" class="py-24 px-4">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-16 scroll-fade">
@@ -568,7 +641,6 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Project 1 -->
             <div class="glass-card rounded-xl overflow-hidden scroll-fade">
               <div class="relative">
                 <img
@@ -584,7 +656,10 @@
               <div class="p-6">
                 <h3 class="text-2xl font-bold mb-2">WaristMate</h3>
                 <p class="text-text-muted mb-4">
-                  A user-friendly web app for automatic, practical, and accurate Islamic inheritance calculation based on faraidh principles. Developed under PKM-KC and validated through expert discussions and live testing.
+                  A user-friendly web app for automatic, practical, and accurate
+                  Islamic inheritance calculation based on faraidh principles.
+                  Developed under PKM-KC and validated through expert
+                  discussions and live testing.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span
@@ -608,7 +683,6 @@
               </div>
             </div>
 
-            <!-- Project 2 -->
             <div
               class="glass-card rounded-xl overflow-hidden scroll-fade"
               style="transition-delay: 150ms"
@@ -625,9 +699,14 @@
                 ></div>
               </div>
               <div class="p-6">
-                <h3 class="text-2xl font-bold mb-2">Bookly.: E-commerce for Digital Comics</h3>
+                <h3 class="text-2xl font-bold mb-2">
+                  Bookly.: E-commerce for Digital Comics
+                </h3>
                 <p class="text-text-muted mb-4">
-                  Bookly is a web-based digital comic store that lets users browse, purchase, and read comics online. Built using PHP and SQL, it features a user-friendly interface with a database system to manage users, comics, and orders smoothly.
+                  Bookly is a web-based digital comic store that lets users
+                  browse, purchase, and read comics online. Built using PHP and
+                  SQL, it features a user-friendly interface with a database
+                  system to manage users, comics, and orders smoothly.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span
@@ -651,11 +730,10 @@
               </div>
             </div>
 
-            <!-- Project 1 -->
             <div class="glass-card rounded-xl overflow-hidden scroll-fade">
               <div class="relative">
                 <img
-                  src="image\project_1.png"
+                  src="image\project_3.png"
                   alt="Nexus Protocol Game"
                   class="w-full h-64 object-cover"
                   onerror="this.onerror=null;this.src='https//placehold.co/600x400/151520/FFFFFF?text=Nexus+Protocol';"
@@ -665,40 +743,47 @@
                 ></div>
               </div>
               <div class="p-6">
-                <h3 class="text-2xl font-bold mb-2">WaristMate</h3>
+                <h3 class="text-2xl font-bold mb-2">
+                  FUNLISH: English Educational Game
+                </h3>
                 <p class="text-text-muted mb-4">
-                  A user-friendly web app for automatic, practical, and accurate Islamic inheritance calculation based on faraidh principles. Developed under PKM-KC and validated through expert discussions and live testing.
+                  FUNLISH is an interactive educational game for elementary
+                  school students that makes learning English more fun and easy.
+                  Through bright visuals, audio, and mini-games, children learn
+                  everyday concepts like clothing, taste, diseases and
+                  medicines, body parts, and adjectives and comparisons. Funlish
+                  helps them understand, practice pronunciation, and master
+                  English in real-world contexts in a fun way.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span
                     class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-primary border border-primary/50"
-                    >HTML & CSS</span
+                    >Unity 6</span
                   >
                   <span
                     class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-primary border border-primary/50"
-                    >JavaScript</span
+                    >C#</span
                   >
                   <span
                     class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-primary border border-primary/50"
-                    >UI/UX Design</span
+                    >Creativity</span
                   >
                 </div>
                 <a
-                  href="https://github.com/cardinaldeacre/WaristMate"
+                  href="https://github.com/Fayshal697/FUNLISH_EnglishEducationalGame"
                   class="font-bold text-secondary hover:text-primary transition-colors"
                   >View Project →</a
                 >
               </div>
             </div>
 
-            <!-- Project 2 -->
             <div
               class="glass-card rounded-xl overflow-hidden scroll-fade"
               style="transition-delay: 150ms"
             >
               <div class="relative">
                 <img
-                  src="image\project_2.png"
+                  src="image\project_4.png"
                   alt="Fintech Dashboard UI/UX Project"
                   class="w-full h-64 object-cover"
                   onerror="this.onerror=null;this.src='https://placehold.co/600x400/151520/FFFFFF?text=Fintech+Dashboard';"
@@ -708,74 +793,155 @@
                 ></div>
               </div>
               <div class="p-6">
-                <h3 class="text-2xl font-bold mb-2">Bookly.: E-commerce for Digital Comics</h3>
+                <h3 class="text-2xl font-bold mb-2">
+                  Avarage Daily Bike Sharing Data Analysis
+                </h3>
                 <p class="text-text-muted mb-4">
-                  Bookly is a web-based digital comic store that lets users browse, purchase, and read comics online. Built using PHP and SQL, it features a user-friendly interface with a database system to manage users, comics, and orders smoothly.
+                  This project is an interactive dashboard based on Python and
+                  Streamlit designed to analyze bicycle rental data. The data
+                  used has undergone data cleaning and exploratory data
+                  analysis, resulting in relevant insights. The dashboard
+                  displays the average number of bicycle rentals per season and
+                  uses RFM (Recency, Frequency, Monetary) analysis to understand
+                  user behavior patterns. With simple yet informative
+                  visualizations, this project demonstrates the ability to
+                  process data, create analysis, and present results in an
+                  interactive and easy-to-understand manner.
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span
                     class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
-                    >PHP</span
+                    >Python</span
                   >
                   <span
                     class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
-                    >MySQL</span
+                    >Streamlit</span
                   >
                   <span
                     class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
-                    >Data Engineering</span
+                    >Seaborn</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-dark rounded-full text-xs font-semibold text-secondary border border-secondary/50"
+                    >Matplotlib & Pyplot</span
                   >
                 </div>
                 <a
-                  href="https://github.com/Fayshal697/Bookly_ECommerce_ComicBook#"
+                  href="https://github.com/Fayshal697/Dicoding_DataScience/tree/main"
                   class="font-bold text-secondary hover:text-primary transition-colors"
                   >View Project →</a
                 >
               </div>
             </div>
-
           </div>
         </div>
       </section>
-      
-      <div class="max-w-7xl mx-auto section-divider"></div>   
 
-      <!-- Contact Section -->
+      <div class="max-w-7xl mx-auto section-divider"></div>
+
       <section id="contact" class="py-24 px-4">
-        <div class="max-w-5xl mx-auto text-center">
-          <div class="scroll-fade">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">
-              <span class="gradient-text">Let's Connect</span>
-            </h2>
-            <p class="text-xl text-text-muted mb-12">
-              Have a project in mind or just want to connect? My inbox is always
-              open.
-            </p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Email -->
-            <a
-              href="mailto:fayshalathilla@email.com"
-              class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
+        <div class="max-w-5xl mx-auto text-center scroll-fade">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">
+            <span class="gradient-text">Let's chat!</span>
+          </h2>
+          <p class="text-xl text-text-muted mb-12 max-w-2xl mx-auto">
+            Do you have an idea or need help? I'm here to listen. Feel free to
+            reach out for collaborations, questions, or just to say hi!
+          </p>
+
+          <div class="glass-card rounded-xl p-8 max-w-2xl mx-auto">
+            <form
+              action="mailto:fayshalathilla@gmail.com"
+              method="POST"
+              enctype="text/plain"
+              class="space-y-6"
             >
-              <svg
-                class="w-12 h-12 mb-4 text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                ></path>
-              </svg>
-              <h3 class="text-xl font-semibold">Email</h3>
-              <p class="text-text-muted">Send a message</p>
-            </a>
-            <!-- GitHub -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-left text-text-muted font-medium mb-1"
+                    >Name <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder=""
+                    required
+                    class="w-full px-4 py-3 rounded-lg bg-dark border border-white/20 focus:outline-none focus:border-primary transition-colors contact-input"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-left text-text-muted font-medium mb-1"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="w-full px-4 py-3 rounded-lg bg-dark border border-white/20 focus:outline-none focus:border-primary transition-colors contact-input"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-left text-text-muted font-medium mb-1"
+                  >Email <span class="text-red-500">*</span></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder=""
+                  required
+                  class="w-full px-4 py-3 rounded-lg bg-dark border border-white/20 focus:outline-none focus:border-primary transition-colors contact-input"
+                />
+              </div>
+              <div>
+                <label
+                  for="subject"
+                  class="block text-left text-text-muted font-medium mb-1"
+                  >Subject <span class="text-red-500">*</span></label
+                >
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full px-4 py-3 rounded-lg bg-dark border border-white/20 focus:outline-none focus:border-primary transition-colors contact-input"
+                />
+              </div>
+              <div>
+                <label
+                  for="question"
+                  class="block text-left text-text-muted font-medium mb-1"
+                  >Question <span class="text-red-500">*</span></label
+                >
+                <textarea
+                  id="question"
+                  name="question"
+                  rows="5"
+                  required
+                  class="w-full px-4 py-3 rounded-lg bg-dark border border-white/20 focus:outline-none focus:border-primary transition-colors resize-y contact-input"
+                ></textarea>
+              </div>
+              <div class="text-right">
+                <button
+                  type="submit"
+                  class="btn-primary px-8 py-3 text-white font-bold rounded-full text-lg"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="max-w-5xl mx-auto text-center mt-12">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <a
               href="https://github.com/Fayshal697"
               class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
@@ -796,7 +962,6 @@
               <h3 class="text-xl font-semibold">GitHub</h3>
               <p class="text-text-muted">View my code</p>
             </a>
-            <!-- LinkedIn -->
             <a
               href="https://www.linkedin.com/in/fayshal-karan-athilla-351b41299/"
               class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
@@ -815,13 +980,16 @@
               <h3 class="text-xl font-semibold">LinkedIn</h3>
               <p class="text-text-muted">Connect professionally</p>
             </a>
-            <!-- WhatsApp -->
             <a
               href="https://wa.me/6281232505308"
               class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center scroll-fade"
               style="transition-delay: 300ms"
-            > <i class="fa-brands fa-whatsapp" style="font-size: 55px; margin-bottom: 1rem;"></i>
-              
+            >
+              <i
+                class="fa-brands fa-whatsapp"
+                style="font-size: 55px; margin-bottom: 1rem"
+              ></i>
+
               <h3 class="text-xl font-semibold">WhatsApp</h3>
               <p class="text-text-muted">Chat with me</p>
             </a>
@@ -830,10 +998,10 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="border-t border-white/10 py-8 px-4">
       <div class="max-w-7xl mx-auto text-center text-text-muted">
-        <p>&copy; 2025 Fayshal Karan. Crafted with passion and code.</p>
+        <p>&copy; 2025 Fayshal Karan. Developed with passion and sincerity.</p>
+      </div>
     </footer>
 
     <script>
@@ -961,11 +1129,11 @@
                 type: "radar",
                 data: {
                   labels: [
-                    "Game Dev (Unity/C#)",
-                    "UI/UX (Figma)",
-                    "Data Analysis (Python)",
+                    "Game Developer",
+                    "UI/UX Design",
+                    "Data Analyst",
                     "Front-End Web",
-                    "3D Modeling (Blender)",
+                    "3D Modeling",
                     "Problem Solving",
                     "Leadership",
                     "Public Speaking",
