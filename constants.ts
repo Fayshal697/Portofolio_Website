@@ -1,4 +1,4 @@
-import { ExperienceItem, EducationItem, ProfileData, LinkItem } from "./types";
+import { ExperienceItem, EducationItem, ProfileData, LinkItem, ProjectItem } from "./types";
 
 export const PROFILE: ProfileData = {
   name: "FAYSHAL KARAN ATHILLA",
@@ -113,4 +113,87 @@ export const BADGE_IMAGES = [
     src: "https://files.catbox.moe/uccx6v.png",
     name: "Unity Junior Programmer",
   },
+];
+
+export const PROJECTS: ProjectItem[] = [
+  {
+    id: "manual-brewing-kopi",
+    title: "Manual Brewing Kopi",
+    category: "Interactive Simulation • EdTech",
+    engine: "Unity WebGL / Interactive Web",
+    image: "https://files.catbox.moe/n2elc0.png",
+    summary:
+      "An interactive web-based simulation dedicated to the craft of manual coffee brewing. Players master precision brewing mechanics—dripper, filter, gooseneck kettle, and digital scale—to understand tool dynamics and extract consistent, high-quality coffee flavor profiles.",
+    fullDescription:
+      "The Manual Coffee Brewing Game is an interactive web-based project that offers a learning experience centered on the art of manual coffee brewing. Players explore the nuances of flavor through simulations involving a dripper, filter, gooseneck kettle, and coffee scale, while also learning the function of each tool in achieving a consistent, high-quality brew. Combining realistic gameplay, detailed visuals, and an informative interface, the project makes the learning process accessible, enjoyable, and effective, serving as a showcase for educational game development.",
+    features: [
+      "Simulated manual coffee tools (dripper, paper filter, gooseneck kettle, precision scale)",
+      "Realistic extraction physics, water pouring control, and brew timing",
+      "Informative UI visualizing aroma notes, extraction strength, and brewing feedback",
+      "Educational curriculum designed for both coffee enthusiasts and students"
+    ],
+    tags: ["Unity WebGL", "Physics Simulation", "Educational Game", "Interactive UI"],
+    playUrl: "https://k-a-r-a-x-d.itch.io/",
+    downloadUrl: "https://k-a-r-a-x-d.itch.io/"
+  },
+  {
+    id: "funlish",
+    title: "FUNLISH",
+    category: "3D Object Hunting • English Learning",
+    engine: "Unity 3D / C#",
+    image: "https://files.catbox.moe/1q7zmq.png",
+    summary:
+      "A vibrant 3D object-hunting educational game designed for elementary school students. Children explore interactive 3D environments to learn everyday English—covering clothing, sense of taste, ailments, human anatomy, and comparative adjectives through voice audio and mini-games.",
+    fullDescription:
+      "FUNLISH is a 3D hunting objects and interactive educational game for elementary school students that makes learning English fun and easy to understand. Through bright visuals and simple games, children are invited to learn everyday concepts about clothing, the sense of taste, diseases and medicines, body parts, adjectives, and comparative adjectives. With a combination of images, audio, and mini game. FUNLISH! Helps children master comprehension, practice pronunciation, and understand English in real-world contexts in a fun way.",
+    features: [
+      "Explorative 3D object-hunting mechanics with child-friendly controls",
+      "Curriculum-aligned English units: Clothing, Tastes, Health, Anatomy, Adjectives",
+      "Interactive mini-games reinforcing retention and active recall",
+      "Native audio voiceover and pronunciation guides for real-world contextual learning"
+    ],
+    tags: ["Unity 3D", "Object Hunting", "EdTech / Elementary", "Audio Pronunciation"],
+    playUrl: "https://k-a-r-a-x-d.itch.io/",
+    downloadUrl: "https://k-a-r-a-x-d.itch.io/"
+  },
+  {
+    id: "amanah",
+    title: "AMANAH",
+    category: "2D Narrative Drama • Anti-Corruption",
+    engine: "Unity 2D / Branching Story",
+    image: "https://files.catbox.moe/luy9pl.png",
+    summary:
+      "A tense 2D interactive narrative exploring political morality and anti-corruption. As Infrastructure Minister Andi, players confront weighty ethical decisions—balancing personal family needs, systemic political pressure, and insidious bribes where every choice permanently alters the fate of the nation.",
+    fullDescription:
+      "Amanah is a 2D interactive narrative game with an anti-corruption theme that immerses players in the dilemma of a Minister of Infrastructure named Andi. Behind position, power, and the demands of life, players will be faced with difficult choices that determine the fate of their families, communities, and even the future of the nation. Every decision has consequences. Not all choices lead to good, and not all regrets come early. Experience the inner conflict of a father, political pressure, the temptation of money, and the voice of the people slowly turning to anger. Will you uphold your mandate… or will you succumb to greed",
+    features: [
+      "Branching narrative tree where every moral decision leaves lasting consequences",
+      "Compelling psychological drama highlighting political pressure and family stakes",
+      "Atmospheric dialogue system, expressive 2D art direction, and thematic soundscapes",
+      "Multiple story conclusions testing whether you uphold your mandate or succumb to greed"
+    ],
+    tags: ["Unity 2D", "Narrative Drama", "Serious Game", "Branching Dialogue"],
+    playUrl: "https://k-a-r-a-x-d.itch.io/",
+    downloadUrl: "https://k-a-r-a-x-d.itch.io/"
+  },
+  {
+    id: "qolbuna",
+    title: "Qolbuna",
+    category: "2D Audio-Driven Game • Inclusive Accessibility",
+    engine: "Unity 2D / Spatial Audio",
+    image: "https://files.catbox.moe/ulxq5z.png",
+    summary:
+      "An inclusive 2D audio-driven educational game engineered for Quran memorization, specifically designed for visually impaired users. Features full voice narration, dual input controls (keyboard for learners, mouse for assistants), memorization testing protocols, inspirational narratives, and tafsir insights.",
+    fullDescription:
+      "Qolbuna is an interactive 2D audio-based educational game for Quran memorization, specifically designed for visually impaired users with a strong desire to memorize the Quran. The game focuses on providing an audio-driven learning experience, where all interactions occur via voice narration, utilizing keyboard controls for visually impaired users and mouse controls for their assistants. Beyond its core memorization features, the game offers a memorization test mode, a collection of inspiring stories, and deeper insights into the tafsir (exegesis) and meaning of the Quran. Through this interactive audio approach, the project serves as an inclusive learning tool that promotes accessibility and demonstrates the potential for developing educational games tailored to specific needs.",
+    features: [
+      "100% audio-driven navigation & immersive voice narration for total accessibility",
+      "Collaborative dual-control scheme (keyboard for visually impaired, mouse for assistants)",
+      "Interactive Quran memorization test modes with responsive acoustic cues",
+      "Rich library of inspirational stories and contextual tafsir (exegesis) insights"
+    ],
+    tags: ["Accessibility (a11y)", "Audio-Driven", "Quran Memorization", "Inclusive Gaming"],
+    playUrl: "https://k-a-r-a-x-d.itch.io/",
+    downloadUrl: "https://k-a-r-a-x-d.itch.io/"
+  }
 ];

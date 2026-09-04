@@ -33,3 +33,17 @@ export interface LinkItem {
   platform: string;
   url: string;
 }
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  category: string;
+  engine: string;
+  image: string;
+  summary: string;
+  fullDescription: string;
+  tags: string[];
+  features: string[];
+  playUrl: string;
+  downloadUrl?: string;
+}

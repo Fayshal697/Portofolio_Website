@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2 } from 'lucide-react';
+import { Menu, X, Gamepad2, FileDown } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +15,11 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Profile', href: '#profile' },
+    { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
     { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
@@ -35,7 +37,7 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -45,8 +47,16 @@ export const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-          <a href="#contact" className="px-5 py-2 bg-cyber-accent hover:bg-red-600 text-white font-bold text-sm rounded skew-x-[-10deg] transition-all transform hover:skew-x-[-10deg] hover:-translate-y-1 shadow-[4px_4px_0px_#fff]">
-            <span className="block skew-x-[10deg]">HIRE ME</span>
+          <a 
+            href="/cv-fayshal-karan-athilla.pdf" 
+            download="Fayshal_Karan_Athilla_CV.pdf"
+            className="px-4 py-2 bg-cyber-accent hover:bg-red-600 text-white font-mono font-bold text-xs uppercase tracking-wider rounded skew-x-[-10deg] transition-all transform hover:skew-x-[-10deg] hover:-translate-y-1 shadow-[3px_3px_0px_#fff] flex items-center gap-1.5 group cursor-pointer"
+            title="Download Curriculum Vitae (PDF)"
+          >
+            <span className="skew-x-[10deg] flex items-center gap-1.5">
+              <FileDown size={14} className="transition-transform group-hover:translate-y-0.5" />
+              <span>DOWNLOAD CV [PDF]</span>
+            </span>
           </a>
         </div>
 
@@ -73,11 +83,13 @@ export const Navbar: React.FC = () => {
             </a>
           ))}
           <a 
-              href="#contact"
-              className="text-lg font-mono text-cyber-accent hover:text-white mt-2"
-              onClick={() => setIsOpen(false)}
+            href="/cv-fayshal-karan-athilla.pdf"
+            download="Fayshal_Karan_Athilla_CV.pdf"
+            className="text-lg font-mono text-cyber-accent hover:text-white mt-2 flex items-center gap-2"
+            onClick={() => setIsOpen(false)}
           >
-              HIRE ME
+            <FileDown size={18} />
+            DOWNLOAD CV [PDF]
           </a>
         </div>
       )}

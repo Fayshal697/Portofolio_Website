@@ -1,6 +1,6 @@
 import React from 'react';
 import { PROFILE, BADGE_IMAGES } from '../constants';
-import { MapPin, Mail, Phone, Linkedin } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, FileDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   // Create a sufficient set of badges to cover wider screens before duplication
@@ -54,6 +54,15 @@ export const Hero: React.FC = () => {
                <a href={PROFILE.linkedin} className="flex items-center gap-2 bg-cyber-card px-4 py-2 rounded border border-gray-800 hover:border-cyber-primary transition-colors">
                   <Linkedin size={16} className="text-cyber-primary"/>
                   LinkedIn
+               </a>
+               <a 
+                  href="/cv-fayshal-karan-athilla.pdf" 
+                  download="Fayshal_Karan_Athilla_CV.pdf" 
+                  className="flex items-center gap-2 bg-cyber-accent/15 px-4 py-2 rounded border border-cyber-accent text-cyber-accent hover:bg-cyber-accent hover:text-white transition-all shadow-[0_0_15px_rgba(255,0,60,0.2)] font-bold"
+                  title="Download Curriculum Vitae (PDF)"
+               >
+                  <FileDown size={16} />
+                  <span>DOWNLOAD CV [PDF]</span>
                </a>
             </div>
           </div>
