@@ -11,6 +11,7 @@ export interface EducationItem {
   location: string;
   period: string;
   degree?: string;
+  score?: string;
 }
 
 export interface SkillItem {

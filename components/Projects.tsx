@@ -3,12 +3,9 @@ import { Section } from './Section';
 import { PROJECTS } from '../constants';
 import { ProjectItem } from '../types';
 import { 
-  Gamepad2, 
   ExternalLink, 
-  Download, 
   ChevronDown, 
   ChevronUp, 
-  Sparkles, 
   Layers, 
   Play,
   Terminal,
@@ -17,17 +14,9 @@ import {
 
 export const Projects: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [activeNotification, setActiveNotification] = useState<string | null>(null);
 
   const toggleExpand = (id: string) => {
     setExpandedId(prev => (prev === id ? null : id));
-  };
-
-  const handleActionNotice = (title: string, actionName: string) => {
-    setActiveNotification(`[SYSTEM]: Initializing ${actionName} for "${title}"... Redirecting to uplink.`);
-    setTimeout(() => {
-      setActiveNotification(null);
-    }, 4000);
   };
 
   return (
@@ -51,32 +40,10 @@ export const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* Dynamic Notification Toast */}
-      {activeNotification && (
-        <div className="fixed bottom-6 right-6 z-50 bg-cyber-card border border-cyber-primary text-cyber-primary px-5 py-3 rounded-lg shadow-[0_0_25px_rgba(0,240,255,0.4)] flex items-center gap-3 font-mono text-xs animate-bounce">
-          <Sparkles size={16} />
-          <span>{activeNotification}</span>
-        </div>
-      )}
-
       {/* Project Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {PROJECTS.map((project: ProjectItem) => {
           const isExpanded = expandedId === project.id;
-
-          // Customized action button labels to fit the game's theme and cyber aesthetic
-          let playLabel = "LAUNCH DEMO // PLAY";
-          let playIcon = <Play size={15} className="fill-current" />;
-
-          if (project.id === 'manual-brewing-kopi') {
-            playLabel = "INITIALIZE BREW // PLAY";
-          } else if (project.id === 'funlish') {
-            playLabel = "DEPLOY MISSION // PLAY";
-          } else if (project.id === 'amanah') {
-            playLabel = "ENTER STORY // PLAY";
-          } else if (project.id === 'qolbuna') {
-            playLabel = "EXPERIENCE AUDIO // PLAY";
-          }
 
           return (
             <div 
@@ -174,35 +141,20 @@ export const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Buttons Footer */}
-              <div className="px-6 pb-6 pt-2 border-t border-gray-800/60 bg-cyber-bg/30 flex flex-wrap items-center justify-between gap-3">
-                {/* Primary Play / Launch Button */}
+              {/* Single Action Button Footer */}
+              <div className="px-6 pb-6 pt-3 border-t border-gray-800/60 bg-cyber-bg/30">
                 <a
                   href={project.playUrl}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => handleActionNotice(project.title, "Play Protocol")}
-                  className="flex-1 min-w-[180px] py-2.5 px-4 bg-cyber-primary hover:bg-cyan-300 text-black font-mono font-bold text-xs uppercase tracking-wider rounded skew-x-[-8deg] transition-all transform hover:skew-x-[-8deg] hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2 group/btn cursor-pointer"
-                  title={`Play / Launch ${project.title}`}
+                  className="w-full py-3 px-4 bg-cyber-primary hover:bg-cyan-300 text-black font-mono font-bold text-xs uppercase tracking-wider rounded skew-x-[-8deg] transition-all transform hover:skew-x-[-8deg] hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(0,240,255,0.45)] flex items-center justify-center gap-2 group/btn cursor-pointer"
+                  title={`Play ${project.title} on itch.io`}
                 >
                   <span className="skew-x-[8deg] flex items-center gap-2">
-                    {playIcon}
-                    <span>{playLabel}</span>
+                    <Play size={14} className="fill-current" />
+                    <span>PLAY</span>
+                    <ExternalLink size={13} className="opacity-70 group-hover/btn:opacity-100 transition-opacity ml-1" />
                   </span>
-                </a>
-
-                {/* Secondary Download / Itch.io Uplink Button */}
-                <a
-                  href={project.downloadUrl || project.playUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => handleActionNotice(project.title, "Download Stream")}
-                  className="py-2.5 px-4 bg-cyber-card hover:bg-gray-800 text-white hover:text-cyber-primary font-mono text-xs uppercase tracking-wider rounded border border-gray-700 hover:border-cyber-primary transition-all flex items-center gap-2 cursor-pointer"
-                  title={`Download Build / Access ${project.title}`}
-                >
-                  <Download size={14} />
-                  <span className="hidden sm:inline">DOWNLOAD BUILD</span>
-                  <ExternalLink size={12} className="text-gray-400" />
                 </a>
               </div>
             </div>

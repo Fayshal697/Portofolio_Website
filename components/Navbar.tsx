@@ -4,26 +4,56 @@ import { Menu, X, Gamepad2, FileDown } from 'lucide-react';
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('profile');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // Check if scrolled down towards or into projects section
+      const projectEl = document.getElementById('projects');
+      if (projectEl) {
+        const rect = projectEl.getBoundingClientRect();
+        // Activate sticky mode as user approaches or enters the projects section
+        setScrolled(rect.top <= 140 || window.scrollY > 200);
+      } else {
+        setScrolled(window.scrollY > 100);
+      }
+
+      // Detect currently active section for navbar indicator
+      const sections = ['profile', 'projects', 'experience', 'skills', 'education', 'contact'];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Profile', href: '#profile' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Profile', href: '#profile', id: 'profile' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
+    { name: 'Education', href: '#education', id: 'education' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-cyber-bg/90 backdrop-blur-md border-b border-gray-800 py-3' : 'bg-transparent py-6'}`}>
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-cyber-bg/95 backdrop-blur-md border-b border-cyber-primary/30 py-3 shadow-[0_4px_25px_rgba(0,0,0,0.8)]' 
+          : 'bg-cyber-bg/40 backdrop-blur-sm border-b border-gray-800/40 py-5'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
         {/* Logo */}
@@ -38,15 +68,24 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="text-sm font-mono text-gray-400 hover:text-white relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyber-primary after:transition-all hover:after:w-full"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a 
+                key={link.name} 
+                href={link.href}
+                className={`text-sm font-mono relative py-1 transition-colors ${
+                  isActive 
+                    ? 'text-cyber-primary font-bold after:w-full' 
+                    : 'text-gray-400 hover:text-white'
+                } after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-cyber-primary after:transition-all hover:after:w-full ${
+                  !isActive ? 'after:w-0' : ''
+                }`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
           <a 
             href="/cv-fayshal-karan-athilla.pdf" 
             download="Fayshal_Karan_Athilla_CV.pdf"
@@ -62,8 +101,9 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-white hover:text-cyber-primary"
+          className="md:hidden text-white hover:text-cyber-primary p-1"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -71,17 +111,22 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-cyber-card border-b border-gray-800 p-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="text-lg font-mono text-gray-300 hover:text-cyber-primary"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="md:hidden absolute top-full left-0 w-full bg-cyber-card border-b border-gray-800 p-6 flex flex-col gap-4 animate-fade-in shadow-2xl">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a 
+                key={link.name} 
+                href={link.href}
+                className={`text-lg font-mono transition-colors ${
+                  isActive ? 'text-cyber-primary font-bold' : 'text-gray-300 hover:text-cyber-primary'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            );
+          })}
           <a 
             href="/cv-fayshal-karan-athilla.pdf"
             download="Fayshal_Karan_Athilla_CV.pdf"

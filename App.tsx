@@ -8,6 +8,7 @@ import { Education } from './components/Education';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { LoadingScreen } from './components/LoadingScreen';
+import { BackToTop } from './components/BackToTop';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +51,7 @@ const App: React.FC = () => {
           </main>
 
           <Footer />
+          <BackToTop />
         </div>
       )}
     </>

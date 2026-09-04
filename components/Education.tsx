@@ -18,7 +18,14 @@ export const Education: React.FC = () => {
                  <GraduationCap size={24} />
               </div>
               
-              <span className="text-xs font-mono text-cyber-primary mb-2 block">{edu.period}</span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span className="text-xs font-mono text-cyber-primary block">{edu.period}</span>
+                {edu.score && (
+                  <span className="px-2.5 py-1 text-xs font-mono font-bold bg-cyber-primary/15 border border-cyber-primary/60 text-cyber-primary rounded shadow-[0_0_10px_rgba(0,240,255,0.2)]">
+                    {edu.score}
+                  </span>
+                )}
+              </div>
               <h3 className="text-xl font-bold text-white mb-2">{edu.institution}</h3>
               <p className="text-gray-400 mb-1">{edu.location}</p>
               {edu.degree && (

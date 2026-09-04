@@ -9,7 +9,7 @@ export const PROFILE: ProfileData = {
   linkedin: "https://www.linkedin.com/in/fayshalkaran/", // Placeholder as per text
   image: "https://files.catbox.moe/lxgkyw.JPG",
   summary:
-    "Information Technology student at UNIDA Gontor, focusing on game development, with experience in grant research, OOP/Unity lab assistance, and study club mentoring. Integrates game design, 3D art, UI/UX, and data analysis to build playable 3D educational prototypes and structured learning flows; familiar with Unity and Git/GitHub. Creative, collaborative, and a fast learner, ready to contribute to a development team.",
+    "An Informatics Engineering student at UNIDA Gontor specializing in game development, with industry experience. Skilled at integrating educational elements into game design. A creative, collaborative, and quick learner, ready to contribute to a development team.",
 };
 
 export const EXPERIENCE: ExperienceItem[] = [
@@ -61,15 +61,17 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const EDUCATION: EducationItem[] = [
   {
-    institution: "Darussalam Gontor Modern Islamic Boarding School",
+    institution: "Pondok Modern Darussalam Gontor",
     location: "Ponorogo",
     period: "April 2017 – April 2023",
+    score: "Nilai Akhir: 8.97",
   },
   {
-    institution: "Darussalam Gontor University",
+    institution: "Universitas Darussalam Gontor",
     location: "Ponorogo",
-    period: "May 2023 – Present",
-    degree: "Information Technology Student",
+    period: "May 2023 – August 2026",
+    degree: "Informatics Engineering Student",
+    score: "IPK: 3.78",
   },
 ];
 
@@ -96,9 +98,9 @@ export const TECHNICAL_SKILLS_LIST = [
 export const SOCIAL_LINKS: LinkItem[] = [
   { platform: "GitHub", url: "https://github.com/Fayshal697" },
   { platform: "LinkedIn", url: "https://www.linkedin.com/in/fayshalkaran/" },
-  { platform: "Instagram", url: "https://www.instagram.com/fayshalkaran/" },
-  { platform: "Itch.io", url: "https://k-a-r-a-x-d.itch.io/" },
   { platform: "Pinterest", url: "https://id.pinterest.com/fayshalathilla/" },
+  { platform: "Itch.io", url: "https://k-a-r-a-x-d.itch.io/" },
+  { platform: "Instagram", url: "https://www.instagram.com/fayshalkaran/" },
 ];
 
 export const BADGE_IMAGES = [
