@@ -48,13 +48,17 @@ export const Projects: React.FC = () => {
           return (
             <div 
               key={project.id}
-              className="bg-cyber-card rounded-xl border border-gray-800 hover:border-cyber-primary/70 transition-all duration-500 flex flex-col justify-between overflow-hidden group hover:shadow-[0_0_35px_rgba(0,240,255,0.15)]"
+              className="glitch-card bg-cyber-card rounded-xl border border-gray-800 transition-all duration-500 flex flex-col justify-between overflow-hidden group"
             >
               {/* Media Header Container */}
               <div className="relative aspect-video w-full overflow-hidden bg-black/80 border-b border-gray-800">
                 {/* Scanline & Grid Effect */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.4)_51%)] bg-[length:100%_4px] pointer-events-none z-10 opacity-60"></div>
                 
+                {/* Subtle Glitch Hologram & Scanline Pass on hover */}
+                <div className="glitch-card-slice" aria-hidden="true"></div>
+                <div className="glitch-card-scanline" aria-hidden="true"></div>
+
                 {/* Engine / Category Badges */}
                 <div className="absolute top-3 left-3 z-20 flex flex-wrap gap-2">
                   <span className="px-2.5 py-1 bg-cyber-bg/90 backdrop-blur-md border border-cyber-primary/40 rounded text-[11px] font-mono font-bold text-cyber-primary tracking-wider">
@@ -82,7 +86,7 @@ export const Projects: React.FC = () => {
               <div className="p-6 md:p-7 flex-grow flex flex-col">
                 <div className="mb-4">
                   <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-cyber-primary transition-colors tracking-tight flex items-center gap-3">
-                    <span>{project.title}</span>
+                    <span className="project-title-glitch transition-all duration-300">{project.title}</span>
                   </h3>
                 </div>
 

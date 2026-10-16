@@ -5,15 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "generate-cv": "bun scripts/generate-cv.ts",
+    "build": "bun scripts/generate-cv.ts && vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "lucide-react": "^0.562.0",
+    "pdf-lib": "^1.17.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "recharts": "^3.7.0",
-    "lucide-react": "^0.562.0"
+    "recharts": "^3.7.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

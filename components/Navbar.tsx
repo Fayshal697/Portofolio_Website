@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2, FileDown } from 'lucide-react';
+import { Menu, X, Gamepad2, FileDown, Eye } from 'lucide-react';
+import { triggerCvDownload } from '../cvDownload';
+import { CV_PRIMARY_URL, CV_FILE_NAME } from '../cvData';
+import { CvModal } from './CvModal';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('profile');
+  const [isCvModalOpen, setIsCvModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,17 +90,32 @@ export const Navbar: React.FC = () => {
               </a>
             );
           })}
-          <a 
-            href="/cv-fayshal-karan-athilla.pdf" 
-            download="Fayshal_Karan_Athilla_CV.pdf"
-            className="px-4 py-2 bg-cyber-accent hover:bg-red-600 text-white font-mono font-bold text-xs uppercase tracking-wider rounded skew-x-[-10deg] transition-all transform hover:skew-x-[-10deg] hover:-translate-y-1 shadow-[3px_3px_0px_#fff] flex items-center gap-1.5 group cursor-pointer"
-            title="Download Curriculum Vitae (PDF)"
-          >
-            <span className="skew-x-[10deg] flex items-center gap-1.5">
-              <FileDown size={14} className="transition-transform group-hover:translate-y-0.5" />
-              <span>DOWNLOAD CV [PDF]</span>
-            </span>
-          </a>
+          <div className="flex items-center gap-2">
+            <a 
+              href={CV_PRIMARY_URL} 
+              download={CV_FILE_NAME}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                triggerCvDownload(e);
+              }}
+              className="px-4 py-2 bg-cyber-accent hover:bg-red-600 text-white font-mono font-bold text-xs uppercase tracking-wider rounded skew-x-[-10deg] transition-all transform hover:skew-x-[-10deg] hover:-translate-y-1 shadow-[3px_3px_0px_#fff] flex items-center gap-1.5 group cursor-pointer"
+              title="Download Curriculum Vitae (PDF)"
+            >
+              <span className="skew-x-[10deg] flex items-center gap-1.5">
+                <FileDown size={14} className="transition-transform group-hover:translate-y-0.5" />
+                <span>DOWNLOAD CV [PDF]</span>
+              </span>
+            </a>
+            <button
+              type="button"
+              onClick={() => setIsCvModalOpen(true)}
+              className="px-2 py-2 text-gray-400 hover:text-cyber-primary rounded transition-colors text-xs font-mono"
+              title="Pratinjau CV di Layar"
+            >
+              <Eye size={16} />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
@@ -127,17 +146,38 @@ export const Navbar: React.FC = () => {
               </a>
             );
           })}
-          <a 
-            href="/cv-fayshal-karan-athilla.pdf"
-            download="Fayshal_Karan_Athilla_CV.pdf"
-            className="text-lg font-mono text-cyber-accent hover:text-white mt-2 flex items-center gap-2"
-            onClick={() => setIsOpen(false)}
-          >
-            <FileDown size={18} />
-            DOWNLOAD CV [PDF]
-          </a>
+          <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-gray-800">
+            <a 
+              href={CV_PRIMARY_URL}
+              download={CV_FILE_NAME}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base font-mono text-cyber-accent hover:text-white flex items-center gap-2 py-1"
+              onClick={(e) => {
+                triggerCvDownload(e);
+                setIsOpen(false);
+              }}
+            >
+              <FileDown size={18} />
+              DOWNLOAD CV [PDF]
+            </a>
+            <button
+              type="button"
+              className="text-sm font-mono text-gray-400 hover:text-cyber-primary flex items-center gap-2 py-1 text-left"
+              onClick={() => {
+                setIsOpen(false);
+                setIsCvModalOpen(true);
+              }}
+            >
+              <Eye size={16} />
+              Lihat Pratinjau CV
+            </button>
+          </div>
         </div>
       )}
+
+      {/* CV Modal */}
+      <CvModal isOpen={isCvModalOpen} onClose={() => setIsCvModalOpen(false)} />
     </nav>
   );
 };

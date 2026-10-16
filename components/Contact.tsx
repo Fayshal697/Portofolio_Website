@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './Section';
-import { Mail, ArrowRight, Copy, Check } from 'lucide-react';
+import { Mail, ArrowRight, Copy, Check, Phone } from 'lucide-react';
 import { PROFILE } from '../constants';
 import { useState } from 'react';
 
@@ -45,6 +45,17 @@ export const Contact: React.FC = () => {
               <Mail size={20} />
               <span className="relative">SEND TRANSMISSION</span>
               <ArrowRight size={20} className="relative group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            <a
+              href={PROFILE.whatsappUrl || "https://api.whatsapp.com/send?phone=6281232505308"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/40 hover:border-emerald-400 text-emerald-400 hover:bg-emerald-500 hover:text-black font-bold px-6 py-4 rounded transition-all transform hover:scale-105 hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]"
+              title="Chat via WhatsApp (+62 812-3250-5308)"
+            >
+              <Phone size={20} className="group-hover:rotate-12 transition-transform" />
+              <span>WHATSAPP CHAT</span>
             </a>
 
             <button 

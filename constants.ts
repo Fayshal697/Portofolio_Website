@@ -4,9 +4,10 @@ export const PROFILE: ProfileData = {
   name: "FAYSHAL KARAN ATHILLA",
   title: "UNITY GAME DEVELOPER",
   location: "Malang, Indonesia",
-  email: "fayshalathilla@gmail.com",
+  email: "faykara.official@gmail.com",
   phone: "081232505308",
-  linkedin: "https://www.linkedin.com/in/fayshalkaran/", // Placeholder as per text
+  whatsappUrl: "https://api.whatsapp.com/send?phone=6281232505308",
+  linkedin: "https://www.linkedin.com/in/faykara", // Placeholder as per text
   image: "https://files.catbox.moe/lxgkyw.JPG",
   summary:
     "An Informatics Engineering student at UNIDA Gontor specializing in game development, with industry experience. Skilled at integrating educational elements into game design. A creative, collaborative, and quick learner, ready to contribute to a development team.",
@@ -57,6 +58,16 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Contributed to the creation of game design documents, game mechanics, and game programming.",
     ],
   },
+  {
+    title: "Unity Game Programmer",
+    company: "Joy Leap Studio - FUNTASYA World",
+    location: "Sidoarjo - Online Via Discord",
+    period: "April 2026 - November 2026",
+    description: [
+      "Collaborated within a game development team and acted as project leader to produce a playable prototype within 48 hours.",
+      "Contributed to the creation of game design documents, game mechanics, and game programming.",
+    ],
+  },
 ];
 
 export const EDUCATION: EducationItem[] = [
@@ -64,14 +75,14 @@ export const EDUCATION: EducationItem[] = [
     institution: "Pondok Modern Darussalam Gontor",
     location: "Ponorogo",
     period: "April 2017 – April 2023",
-    score: "Nilai Akhir: 8.97",
+    score: "Final Grade: 8.97",
   },
   {
     institution: "Universitas Darussalam Gontor",
     location: "Ponorogo",
     period: "May 2023 – August 2026",
     degree: "Informatics Engineering Student",
-    score: "IPK: 3.78",
+    score: "GPA: 3.78",
   },
 ];
 
@@ -97,7 +108,7 @@ export const TECHNICAL_SKILLS_LIST = [
 
 export const SOCIAL_LINKS: LinkItem[] = [
   { platform: "GitHub", url: "https://github.com/Fayshal697" },
-  { platform: "LinkedIn", url: "https://www.linkedin.com/in/fayshalkaran/" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/in/faykara/" },
   { platform: "Pinterest", url: "https://id.pinterest.com/fayshalathilla/" },
   { platform: "Itch.io", url: "https://k-a-r-a-x-d.itch.io/" },
   { platform: "Instagram", url: "https://www.instagram.com/fayshalkaran/" },

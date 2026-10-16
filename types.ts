@@ -25,6 +25,7 @@ export interface ProfileData {
   location: string;
   email: string;
   phone: string;
+  whatsappUrl?: string;
   linkedin: string; // Placeholder for link
   image: string;
   summary: string;
