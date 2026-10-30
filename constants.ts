@@ -2,7 +2,8 @@ import { ExperienceItem, EducationItem, ProfileData, LinkItem, ProjectItem } fro
 
 export const PROFILE: ProfileData = {
   name: "FAYSHAL KARAN ATHILLA",
-  title: "UNITY GAME DEVELOPER",
+  title: "GAME DEVELOPER",
+  titles: ["GAME DEVELOPER", "GRAPHIC DESIGNER"],
   location: "Malang, Indonesia",
   email: "faykara.official@gmail.com",
   phone: "081232505308",
@@ -64,8 +65,11 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: "Sidoarjo - Online Via Discord",
     period: "April 2026 - November 2026",
     description: [
-      "Collaborated within a game development team and acted as project leader to produce a playable prototype within 48 hours.",
-      "Contributed to the creation of game design documents, game mechanics, and game programming.",
+      "Develop various gameplay mechanics for toddler and preschool educational games, including drag-and-drop systems, line connectors, and answer selection using Unity.",
+      "Improve game feel and playing experience through the implementation of 2D animation, scene transitions, sound effects (SFX), particle VFX, and background music (BGM).",
+      "Collaborate on the development of features in 3D entertainment games, including the integration of new characters and their implementation into the system and gameplay mechanics.",
+      "Participated in a two-day intensive collaboration on the development of a WebGL-based 2D educational game for a game development competition with the project \"Manual Brewing Coffee\".",
+      "Took a course and certification program during the internship to deepen your 2D and 3D game development competencies at Unity, covering various gameplay styles (Zuma-style, supermarket simulator, FPS, 2D platformer, 3D RPG, memory card flip, point-and-click, 3D vertical shooter), lighting, and development on Roblox.",
     ],
   },
 ];

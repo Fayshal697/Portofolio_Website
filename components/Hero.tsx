@@ -1,13 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PROFILE, BADGE_IMAGES } from '../constants';
-import { Download, Check, Eye, FileText } from 'lucide-react';
+import { Download, Check, Gamepad2, Palette } from 'lucide-react';
 import { triggerCvDownload } from '../cvDownload';
 import { CV_PRIMARY_URL, CV_FILE_NAME } from '../cvData';
-import { CvModal } from './CvModal';
+
+const TITLE_CONFIG = [
+  {
+    title: "GAME DEVELOPER",
+    shortLabel: "Game Dev",
+    tagline: "Gameplay Mechanics • Unity 2D/3D • C#",
+    icon: Gamepad2,
+    gradient: "from-cyber-primary via-cyan-300 to-indigo-400",
+    glow: "rgba(0, 240, 255, 0.45)",
+    cursorColor: "bg-cyber-primary",
+    badgeBorder: "border-cyber-primary/60",
+    badgeBg: "bg-cyber-primary/10",
+    badgeText: "text-cyber-primary"
+  },
+  {
+    title: "GRAPHIC DESIGNER",
+    shortLabel: "Graphic Design",
+    tagline: "UI/UX • Visual Identity • 2D Animation",
+    icon: Palette,
+    gradient: "from-fuchsia-400 via-pink-400 to-purple-400",
+    glow: "rgba(217, 70, 239, 0.45)",
+    cursorColor: "bg-fuchsia-400",
+    badgeBorder: "border-fuchsia-500/60",
+    badgeBg: "bg-fuchsia-500/10",
+    badgeText: "text-fuchsia-400"
+  }
+];
 
 export const Hero: React.FC = () => {
   const [downloadSuccess, setDownloadSuccess] = useState(false);
-  const [isCvModalOpen, setIsCvModalOpen] = useState(false);
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setTitleIndex((prev) => (prev + 1) % TITLE_CONFIG.length);
+        setIsTransitioning(false);
+      }, 320);
+    }, 3200);
+  };
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const handleSelectTitle = (idx: number) => {
+    if (idx === titleIndex) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setTitleIndex(idx);
+      setIsTransitioning(false);
+    }, 200);
+    startTimer();
+  };
+
+  const currentRole = TITLE_CONFIG[titleIndex];
 
   const handleDownload = (e: React.MouseEvent) => {
     triggerCvDownload(e);
@@ -42,17 +100,76 @@ export const Hero: React.FC = () => {
               {PROFILE.name}
             </h1>
             
-            <h2 className="text-2xl md:text-4xl font-bold text-cyber-secondary">
-              {PROFILE.title}
-            </h2>
+            {/* Animated Dynamic Role Title with Smooth Cyber Transition */}
+            <div className="space-y-3">
+              <div className="min-h-[46px] md:min-h-[54px] flex items-center justify-center lg:justify-start">
+                <div className="flex items-center">
+                  <span className="text-cyber-primary/60 font-mono text-xl md:text-3xl font-light mr-2 select-none">
+                    &gt;
+                  </span>
+                  <h2
+                    className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight transition-all duration-300 transform ${
+                      isTransitioning
+                        ? 'opacity-0 -translate-y-3 scale-95 blur-[2px]'
+                        : 'opacity-100 translate-y-0 scale-100 blur-0'
+                    } text-transparent bg-clip-text bg-gradient-to-r ${currentRole.gradient}`}
+                    style={{
+                      filter: isTransitioning ? 'none' : `drop-shadow(0 0 16px ${currentRole.glow})`
+                    }}
+                  >
+                    {currentRole.title}
+                  </h2>
+                  <span
+                    className={`inline-block w-2 md:w-2.5 h-6 md:h-8 ml-2 rounded-sm animate-pulse ${currentRole.cursorColor}`}
+                    style={{
+                      boxShadow: `0 0 10px ${currentRole.glow}`
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Interactive Role Switcher & Tagline */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 font-mono text-xs">
+                {TITLE_CONFIG.map((item, idx) => {
+                  const Icon = item.icon;
+                  const isActive = titleIndex === idx;
+                  return (
+                    <button
+                      key={item.title}
+                      onClick={() => handleSelectTitle(idx)}
+                      type="button"
+                      title={`Switch to ${item.title}`}
+                      className={`group/btn relative px-3 py-1 rounded transition-all duration-300 flex items-center gap-1.5 border text-[11px] tracking-wider uppercase cursor-pointer ${
+                        isActive
+                          ? `${item.badgeBorder} ${item.badgeBg} ${item.badgeText} shadow-[0_0_12px_${item.glow}]`
+                          : 'border-gray-800 text-gray-500 hover:text-gray-300 hover:border-gray-700 bg-black/40'
+                      }`}
+                    >
+                      <Icon size={12} className={isActive ? 'animate-pulse' : 'text-gray-500 group-hover/btn:text-gray-400'} />
+                      <span>{item.shortLabel}</span>
+                      {isActive && (
+                        <span
+                          className="w-1.5 h-1.5 rounded-full animate-ping ml-0.5"
+                          style={{ backgroundColor: idx === 0 ? '#00f0ff' : '#d946ef' }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+
+                <span className="hidden sm:inline-block text-[11px] text-gray-500 font-mono border-l border-gray-800 pl-2 ml-1">
+                  {currentRole.tagline}
+                </span>
+              </div>
+            </div>
 
             <p className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed">
               {PROFILE.summary}
             </p>
 
-            {/* Download CV Actions (Replaces previous origin, email, whatsapp, and linkedin badges) */}
-            <div className="pt-6 space-y-3">
-              <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
+            {/* Download CV Action */}
+            <div className="pt-6">
+              <div className="flex items-center justify-center lg:justify-start">
                 <a
                   href={CV_PRIMARY_URL}
                   download={CV_FILE_NAME}
@@ -74,22 +191,6 @@ export const Hero: React.FC = () => {
                     </>
                   )}
                 </a>
-
-                <button
-                  onClick={() => setIsCvModalOpen(true)}
-                  className="group inline-flex items-center gap-2 px-6 py-4 bg-cyber-card hover:bg-gray-800/90 text-gray-300 hover:text-cyber-primary font-mono text-sm tracking-wider rounded border border-gray-800 hover:border-cyber-primary transition-all cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
-                  title="Lihat pratinjau Curriculum Vitae"
-                >
-                  <Eye size={18} className="text-cyber-primary group-hover:scale-110 transition-transform" />
-                  <span>PREVIEW CV</span>
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2 justify-center lg:justify-start text-xs font-mono text-gray-500">
-                <FileText size={13} className="text-cyber-primary/70" />
-                <span>{CV_FILE_NAME}</span>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyber-primary/50"></span>
-                <span className="text-emerald-400/90 font-medium">Ready for Offline / Direct Download</span>
               </div>
             </div>
           </div>
@@ -145,12 +246,6 @@ export const Hero: React.FC = () => {
              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cyber-bg to-transparent z-10 pointer-events-none"></div>
          </div>
        </div>
-
-      {/* CV Interactive Preview & Direct Download Modal */}
-      <CvModal 
-        isOpen={isCvModalOpen} 
-        onClose={() => setIsCvModalOpen(false)} 
-      />
 
     </div>
   );

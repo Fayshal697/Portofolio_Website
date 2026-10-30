@@ -28,6 +28,7 @@ export interface SkillItem {
 export interface ProfileData {
   name: string;
   title: string;
+  titles?: string[];
   location: string;
   email: string;
   phone: string;
