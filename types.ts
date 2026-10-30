@@ -12,6 +12,12 @@ export interface EducationItem {
   period: string;
   degree?: string;
   score?: string;
+  websiteUrl: string;
+  nodeCode?: string;
+  type?: string;
+  tagline?: string;
+  description?: string;
+  highlights?: string[];
 }
 
 export interface SkillItem {

@@ -73,16 +73,40 @@ export const EXPERIENCE: ExperienceItem[] = [
 export const EDUCATION: EducationItem[] = [
   {
     institution: "Pondok Modern Darussalam Gontor",
-    location: "Ponorogo",
+    location: "Ponorogo, Jawa Timur",
     period: "April 2017 – April 2023",
     score: "Final Grade: 8.97",
+    websiteUrl: "https://unida.gontor.ac.id/",
+    nodeCode: "PMDG-KMI",
+    type: "Kulliyyatul Mu'allimin Al-Islamiyyah (KMI)",
+    tagline: "Pondok Pesantren Modern Pelopor Karakter, Kemandirian & Kedisiplinan",
+    description:
+      "Pondok Modern Darussalam Gontor (PMDG) adalah lembaga pendidikan pesantren modern legendaris di Indonesia yang memadukan pendidikan karakter (tarbiyah), kedisiplinan hidup mandiri 24 jam, kepemimpinan (leadership), serta penguasaan aktif dwibahasa (Arab dan Inggris) berwawasan global.",
+    highlights: [
+      "Kurikulum terpadu Kulliyyatul Mu'allimin Al-Islamiyyah (KMI) selama 6 tahun",
+      "Kemandirian & kepemimpinan santri dalam organisasi dan kepanitiaan santri",
+      "Penerapan lingkungan aktif berbahasa Arab & Inggris secara intensif 24 jam",
+      "Lulus dengan predikat istimewa (Final Grade: 8.97)"
+    ]
   },
   {
     institution: "Universitas Darussalam Gontor",
-    location: "Ponorogo",
+    location: "Ponorogo, Jawa Timur",
     period: "May 2023 – August 2026",
     degree: "Informatics Engineering Student",
     score: "GPA: 3.78",
+    websiteUrl: "https://unida.gontor.ac.id/",
+    nodeCode: "UNIDA-TI",
+    type: "Fakultas Sains & Teknologi • Teknik Informatika",
+    tagline: "Perguruan Tinggi Berbasis Pesantren & Pusat Riset Game Development",
+    description:
+      "Universitas Darussalam (UNIDA) Gontor adalah universitas berbasis sistem pesantren (Baitul Hikmah) terpadu. Fakultas Sains & Teknologi program studi Teknik Informatika berfokus pada rekayasa perangkat lunak modern, game development, kecerdasan buatan, dan teknologi pendidikan berintegritas tinggi.",
+    highlights: [
+      "Riset hibah Kemendikbudristek: Game Edukasi Bahasa Inggris 3D",
+      "Asisten Praktikum Pemrograman Berorientasi Objek (OOP) & Unity 6",
+      "Mentor Game Developer UNIDA Gontor IT Study Club",
+      "IPK Kumulatif Tinggi: 3.78 / 4.00"
+    ]
   },
 ];
 

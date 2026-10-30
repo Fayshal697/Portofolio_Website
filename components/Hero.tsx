@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { PROFILE, BADGE_IMAGES } from '../constants';
-import { MapPin, Mail, Phone, Linkedin, FileDown, Eye, CheckCircle2 } from 'lucide-react';
-import { CvModal } from './CvModal';
+import { Download, Check, Eye, FileText } from 'lucide-react';
 import { triggerCvDownload } from '../cvDownload';
 import { CV_PRIMARY_URL, CV_FILE_NAME } from '../cvData';
+import { CvModal } from './CvModal';
 
 export const Hero: React.FC = () => {
+  const [downloadSuccess, setDownloadSuccess] = useState(false);
   const [isCvModalOpen, setIsCvModalOpen] = useState(false);
-  const [downloadToast, setDownloadToast] = useState('');
+
+  const handleDownload = (e: React.MouseEvent) => {
+    triggerCvDownload(e);
+    setDownloadSuccess(true);
+    setTimeout(() => setDownloadSuccess(false), 3500);
+  };
+
   // Create a sufficient set of badges to cover wider screens before duplication
   // 5 images * 4 sets = 20 images in the base set, enough for 1920px+ widths
   const baseSet = [...BADGE_IMAGES, ...BADGE_IMAGES, ...BADGE_IMAGES, ...BADGE_IMAGES];
@@ -43,75 +50,48 @@ export const Hero: React.FC = () => {
               {PROFILE.summary}
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-6 text-sm font-mono text-gray-300">
-               <div className="flex items-center gap-2 bg-cyber-card px-4 py-2 rounded border border-gray-800 hover:border-cyber-primary transition-colors">
-                  <MapPin size={16} className="text-cyber-primary"/>
-                  {PROFILE.location}
-               </div>
-               <a href={`mailto:${PROFILE.email}`} className="flex items-center gap-2 bg-cyber-card px-4 py-2 rounded border border-gray-800 hover:border-cyber-primary transition-colors">
-                  <Mail size={16} className="text-cyber-primary"/>
-                  {PROFILE.email}
-               </a>
-               <a 
-                  href={PROFILE.whatsappUrl || "https://api.whatsapp.com/send?phone=6281232505308"} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-cyber-card px-4 py-2 rounded border border-gray-800 hover:border-emerald-400 hover:text-emerald-400 hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all cursor-pointer group/wa"
-                  title="Hubungi langsung via WhatsApp (081232505308)"
-               >
-                  <Phone size={16} className="text-emerald-400 group-hover/wa:scale-110 transition-transform"/>
-                  <span>{PROFILE.phone}</span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 tracking-wider">WA</span>
-               </a>
-               <a href={PROFILE.linkedin} className="flex items-center gap-2 bg-cyber-card px-4 py-2 rounded border border-gray-800 hover:border-cyber-primary transition-colors">
-                  <Linkedin size={16} className="text-cyber-primary"/>
-                  LinkedIn
-               </a>
-               <div className="flex flex-wrap items-center gap-2">
-                 <a 
-                    href={CV_PRIMARY_URL} 
-                    download={CV_FILE_NAME} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => {
-                      const res = triggerCvDownload(e);
-                      setDownloadToast(res.message);
-                      setTimeout(() => setDownloadToast(''), 4000);
-                    }}
-                    className="flex items-center gap-2 bg-cyber-accent/15 px-4 py-2 rounded border border-cyber-accent text-cyber-accent hover:bg-cyber-accent hover:text-white transition-all shadow-[0_0_15px_rgba(255,0,60,0.2)] font-bold cursor-pointer group/cv"
-                    title="Download Curriculum Vitae (PDF)"
-                 >
-                    <FileDown size={16} className="group-hover/cv:translate-y-0.5 transition-transform" />
-                    <span>DOWNLOAD CV [PDF]</span>
-                 </a>
-
-                 <button
-                   type="button"
-                   onClick={() => setIsCvModalOpen(true)}
-                   className="flex items-center gap-1.5 bg-cyber-card px-3 py-2 rounded border border-gray-800 hover:border-cyber-primary text-gray-300 hover:text-cyber-primary text-xs font-mono transition-colors"
-                   title="Pratinjau Curriculum Vitae di Layar"
-                 >
-                   <Eye size={14} />
-                   <span>Lihat CV</span>
-                 </button>
-               </div>
-            </div>
-
-            {/* Download status toast feedback */}
-            {downloadToast && (
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-400 text-xs font-mono animate-fade-in shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                <CheckCircle2 size={14} />
-                <span>{downloadToast}</span>
-                <a 
-                  href={CV_PRIMARY_URL} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="underline ml-1 hover:text-white font-bold"
+            {/* Download CV Actions (Replaces previous origin, email, whatsapp, and linkedin badges) */}
+            <div className="pt-6 space-y-3">
+              <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
+                <a
+                  href={CV_PRIMARY_URL}
+                  download={CV_FILE_NAME}
+                  onClick={handleDownload}
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyber-primary to-cyan-400 hover:from-cyan-300 hover:to-cyber-primary text-black font-mono font-bold text-sm tracking-wider rounded shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:shadow-[0_0_35px_rgba(0,240,255,0.7)] transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
                 >
-                  Buka tab baru
+                  {downloadSuccess ? (
+                    <>
+                      <Check size={18} className="text-black stroke-[3] animate-bounce" />
+                      <span>CV BERHASIL DIUNDUH</span>
+                    </>
+                  ) : (
+                    <>
+                      <Download size={18} className="group-hover:translate-y-0.5 transition-transform stroke-[2.5]" />
+                      <span>DOWNLOAD CV</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 bg-black/20 text-black font-extrabold rounded tracking-wider">
+                        PDF
+                      </span>
+                    </>
+                  )}
                 </a>
+
+                <button
+                  onClick={() => setIsCvModalOpen(true)}
+                  className="group inline-flex items-center gap-2 px-6 py-4 bg-cyber-card hover:bg-gray-800/90 text-gray-300 hover:text-cyber-primary font-mono text-sm tracking-wider rounded border border-gray-800 hover:border-cyber-primary transition-all cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+                  title="Lihat pratinjau Curriculum Vitae"
+                >
+                  <Eye size={18} className="text-cyber-primary group-hover:scale-110 transition-transform" />
+                  <span>PREVIEW CV</span>
+                </button>
               </div>
-            )}
+
+              <div className="flex items-center gap-2 justify-center lg:justify-start text-xs font-mono text-gray-500">
+                <FileText size={13} className="text-cyber-primary/70" />
+                <span>{CV_FILE_NAME}</span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyber-primary/50"></span>
+                <span className="text-emerald-400/90 font-medium">Ready for Offline / Direct Download</span>
+              </div>
+            </div>
           </div>
 
           {/* Image Content */}
@@ -166,8 +146,12 @@ export const Hero: React.FC = () => {
          </div>
        </div>
 
-       {/* CV Preview & Fallback Modal */}
-       <CvModal isOpen={isCvModalOpen} onClose={() => setIsCvModalOpen(false)} />
+      {/* CV Interactive Preview & Direct Download Modal */}
+      <CvModal 
+        isOpen={isCvModalOpen} 
+        onClose={() => setIsCvModalOpen(false)} 
+      />
+
     </div>
   );
 };
